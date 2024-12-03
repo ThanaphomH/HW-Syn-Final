@@ -23,7 +23,8 @@ module uart(
     input clk,
     input RsRx,
     output RsTx,
-   output reg [7:0]  data_2 
+    output reg [7:0]  data_2 ,
+    output wire we
     );
     
     reg en, last_rec;
@@ -41,6 +42,9 @@ module uart(
             data_in = data_out;
             data_2=data_out;
             if (data_in <= 8'h7A && data_in >= 8'h21) en = 1;
+            we = 1;
+        else
+            we = 0;
         end
         last_rec = received;
     end

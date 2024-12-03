@@ -34,17 +34,37 @@ module top(
     wire w_video_on, w_p_tick;
     reg [11:0] rgb_reg;
     wire [11:0] rgb_next;
-    wire [7:0]O;
+    wire [7:0] O;
+    
+    reg we;
+    reg [4:0] wx, rx;
+    reg [1:0] wy, ry;
+    wire [7:0]rdata;
     
     // VGA Controller
     vga_controller vga(.clk_100MHz(clk), .reset(reset), .hsync(hsync), .vsync(vsync),
                        .video_on(w_video_on), .p_tick(w_p_tick), .x(w_x), .y(w_y));
                        
     // Text Generation Circuit
-    ascii_test at(.clk(clk), .video_on(w_video_on), .x(w_x), .y(w_y), .rgb(rgb_next), .ascii_code(O[6:0]) );
+    ascii_test at(.clk(clk), .video_on(w_video_on), .x(w_x), .y(w_y), .rgb(rgb_next), .ascii_code(rdata[6:0]));
     
-    uart uart_instance(clk, RsRx, RsTx,O); // Instance of uart
-    
+    uart uart_instance(clk, RsRx, RsTx, O, we); // Instance of uart
+
+    @always(posedge we) begin
+        if (wx == 0'b11111) begin
+            wx = 0;
+            if (wy == 0'b11) begin
+                wy = 0;
+            else
+                wy += 1;
+            end
+        else
+            wx += 1;
+        end
+    end
+
+    DualPortRAM ram(clk, we, wy, wx, O, ry, rx, rdata);
+
     // rgb buffer
     always @(posedge clk)
         if(w_p_tick)
@@ -54,6 +74,6 @@ module top(
     assign rgb = rgb_reg;
     
     // 7seg board
-//    quadSevenSeg q7seg(seg, dp, an0, an1, an2, an3,O, O,O, O, targetClk);
+    quadSevenSeg q7seg(seg, dp, an0, an1, an2, an3,O, O,O, O, targetClk);
       
 endmodule
