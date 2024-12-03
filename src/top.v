@@ -41,7 +41,7 @@ module top(
                        .video_on(w_video_on), .p_tick(w_p_tick), .x(w_x), .y(w_y));
                        
     // Text Generation Circuit
-    ascii_test at(.clk(clk), .video_on(w_video_on), .x(w_x), .y(w_y), .rgb(rgb_next));
+    ascii_test at(.clk(clk), .video_on(w_video_on), .x(w_x), .y(w_y), .rgb(rgb_next), .ascii_code(O[6:0]) );
     
     uart uart_instance(clk, RsRx, RsTx,O); // Instance of uart
     
@@ -54,6 +54,6 @@ module top(
     assign rgb = rgb_reg;
     
     // 7seg board
-    quadSevenSeg q7seg(seg, dp, an0, an1, an2, an3,O, O,O, O, targetClk);
+//    quadSevenSeg q7seg(seg, dp, an0, an1, an2, an3,O, O,O, O, targetClk);
       
 endmodule

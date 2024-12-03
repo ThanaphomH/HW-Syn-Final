@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc rfile:../../../src/const_ascii_test.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc rfile:../../../src/const_ascii_test.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:2 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN W5 [get_ports clk]
 set_property src_info {type:XDC file:1 line:7 export:INPUT save:INPUT read:READ} [current_design]

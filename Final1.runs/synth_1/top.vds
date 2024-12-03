@@ -3,12 +3,12 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Tue Dec  3 14:23:33 2024
-# Process ID: 20748
-# Current directory: C:/Users/sqoul/Desktop/Chula/Hardware/Final1/Final1.runs/synth_1
+# Start of session at: Tue Dec  3 15:05:38 2024
+# Process ID: 7180
+# Current directory: C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/Final1.runs/synth_1
 # Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
-# Log file: C:/Users/sqoul/Desktop/Chula/Hardware/Final1/Final1.runs/synth_1/top.vds
-# Journal file: C:/Users/sqoul/Desktop/Chula/Hardware/Final1/Final1.runs/synth_1\vivado.jou
+# Log file: C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/Final1.runs/synth_1/top.vds
+# Journal file: C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/Final1.runs/synth_1\vivado.jou
 # Running On        :Thanaphom
 # Platform          :Windows Server 2016 or Windows 10
 # Operating System  :22631
@@ -19,12 +19,12 @@
 # Host memory       :33736 MB
 # Swap memory       :2147 MB
 # Total Virtual     :35883 MB
-# Available Virtual :10842 MB
+# Available Virtual :9816 MB
 #-----------------------------------------------------------
 source top.tcl -notrace
-create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:12 . Memory (MB): peak = 532.027 ; gain = 202.430
-Command: read_checkpoint -auto_incremental -incremental C:/Users/sqoul/Desktop/Chula/Hardware/Final1/Final1.srcs/utils_1/imports/synth_1/vga_test.dcp
-INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/sqoul/Desktop/Chula/Hardware/Final1/Final1.srcs/utils_1/imports/synth_1/vga_test.dcp for incremental synthesis
+create_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:12 . Memory (MB): peak = 531.020 ; gain = 200.570
+Command: read_checkpoint -auto_incremental -incremental C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/Final1.srcs/utils_1/imports/synth_1/vga_test.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/Final1.srcs/utils_1/imports/synth_1/vga_test.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
 Command: synth_design -top top -part xc7a35tcpg236-1
 Starting synth_design
@@ -36,184 +36,193 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 9964
+INFO: [Synth 8-7075] Helper process launched with PID 14180
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 1386.008 ; gain = 448.246
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:07 . Memory (MB): peak = 1385.844 ; gain = 449.492
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-11121] redeclaration of ANSI port 'clkDiv' is not allowed [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/clockDiv.v:28]
-WARNING: [Synth 8-11121] redeclaration of ANSI port 'segments' is not allowed [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/hexTo7Segment.v:28]
-INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/top.v:3]
-INFO: [Synth 8-6157] synthesizing module 'clockDiv' [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/clockDiv.v:23]
-INFO: [Synth 8-6155] done synthesizing module 'clockDiv' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/clockDiv.v:23]
-INFO: [Synth 8-6157] synthesizing module 'vga_controller' [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/vga_controller.v:21]
-INFO: [Synth 8-6155] done synthesizing module 'vga_controller' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/vga_controller.v:21]
-INFO: [Synth 8-6157] synthesizing module 'ascii_test' [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/ascii_test.v:9]
-INFO: [Synth 8-6157] synthesizing module 'ascii_rom' [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/ascii_rom.v:22]
-INFO: [Synth 8-6155] done synthesizing module 'ascii_rom' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/ascii_rom.v:22]
-INFO: [Synth 8-6155] done synthesizing module 'ascii_test' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/ascii_test.v:9]
-INFO: [Synth 8-6157] synthesizing module 'uart' [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/uart.v:22]
-INFO: [Synth 8-6157] synthesizing module 'baudrate_gen' [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/baudrate_gen.v:23]
-INFO: [Synth 8-6155] done synthesizing module 'baudrate_gen' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/baudrate_gen.v:23]
-INFO: [Synth 8-6157] synthesizing module 'uart_rx' [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/uart_rx.v:23]
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/uart_rx.v:45]
-INFO: [Synth 8-6155] done synthesizing module 'uart_rx' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/uart_rx.v:23]
-INFO: [Synth 8-6157] synthesizing module 'uart_tx' [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/uart_tx.v:22]
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/uart_tx.v:50]
-INFO: [Synth 8-6155] done synthesizing module 'uart_tx' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/uart_tx.v:22]
-INFO: [Synth 8-6155] done synthesizing module 'uart' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/uart.v:22]
-INFO: [Synth 8-6157] synthesizing module 'quadSevenSeg' [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/quadSevenSeg.v:23]
-INFO: [Synth 8-6157] synthesizing module 'hexTo7Segment' [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/hexTo7Segment.v:23]
-INFO: [Synth 8-6155] done synthesizing module 'hexTo7Segment' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/hexTo7Segment.v:23]
-WARNING: [Synth 8-567] referenced signal 'num0' should be on the sensitivity list [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/quadSevenSeg.v:65]
-WARNING: [Synth 8-567] referenced signal 'num1' should be on the sensitivity list [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/quadSevenSeg.v:65]
-WARNING: [Synth 8-567] referenced signal 'num2' should be on the sensitivity list [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/quadSevenSeg.v:65]
-WARNING: [Synth 8-567] referenced signal 'num3' should be on the sensitivity list [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/quadSevenSeg.v:65]
-INFO: [Synth 8-6155] done synthesizing module 'quadSevenSeg' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/quadSevenSeg.v:23]
-INFO: [Synth 8-6155] done synthesizing module 'top' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/top.v:3]
+WARNING: [Synth 8-11121] redeclaration of ANSI port 'clkDiv' is not allowed [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/clockDiv.v:28]
+INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/top.v:3]
+INFO: [Synth 8-6157] synthesizing module 'clockDiv' [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/clockDiv.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'clockDiv' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/clockDiv.v:23]
+INFO: [Synth 8-6157] synthesizing module 'vga_controller' [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/vga_controller.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'vga_controller' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/vga_controller.v:21]
+INFO: [Synth 8-6157] synthesizing module 'ascii_test' [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/ascii_test.v:9]
+INFO: [Synth 8-6157] synthesizing module 'ascii_rom' [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/ascii_rom.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'ascii_rom' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/ascii_rom.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'ascii_test' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/ascii_test.v:9]
+INFO: [Synth 8-6157] synthesizing module 'uart' [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/uart.v:22]
+INFO: [Synth 8-6157] synthesizing module 'baudrate_gen' [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/baudrate_gen.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'baudrate_gen' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/baudrate_gen.v:23]
+INFO: [Synth 8-6157] synthesizing module 'uart_rx' [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/uart_rx.v:23]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/uart_rx.v:45]
+INFO: [Synth 8-6155] done synthesizing module 'uart_rx' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/uart_rx.v:23]
+INFO: [Synth 8-6157] synthesizing module 'uart_tx' [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/uart_tx.v:22]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/uart_tx.v:50]
+INFO: [Synth 8-6155] done synthesizing module 'uart_tx' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/uart_tx.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'uart' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/uart.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'top' (0#1) [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/top.v:3]
+WARNING: [Synth 8-3848] Net seg in module/entity top does not have driver. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/top.v:11]
+WARNING: [Synth 8-3848] Net dp in module/entity top does not have driver. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/top.v:12]
+WARNING: [Synth 8-3848] Net an0 in module/entity top does not have driver. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/top.v:17]
+WARNING: [Synth 8-3848] Net an1 in module/entity top does not have driver. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/top.v:17]
+WARNING: [Synth 8-3848] Net an2 in module/entity top does not have driver. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/top.v:17]
+WARNING: [Synth 8-3848] Net an3 in module/entity top does not have driver. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/top.v:17]
+WARNING: [Synth 8-7129] Port seg[6] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port seg[5] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port seg[4] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port seg[3] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port seg[2] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port seg[1] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port seg[0] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dp in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port an[3] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port an[2] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port an[1] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port an[0] in module top is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:11 . Memory (MB): peak = 1504.191 ; gain = 566.430
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:10 . Memory (MB): peak = 1503.559 ; gain = 567.207
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:11 . Memory (MB): peak = 1504.191 ; gain = 566.430
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 1503.559 ; gain = 567.207
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:11 . Memory (MB): peak = 1504.191 ; gain = 566.430
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 1503.559 ; gain = 567.207
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1504.191 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1503.559 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc]
-WARNING: [Vivado 12-584] No ports matched 'sw[0]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:41]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:41]
+Parsing XDC File [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc]
+WARNING: [Vivado 12-584] No ports matched 'sw[0]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:41]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:41]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[0]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:42]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:42]
+WARNING: [Vivado 12-584] No ports matched 'sw[0]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:42]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:42]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[1]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:43]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:43]
+WARNING: [Vivado 12-584] No ports matched 'sw[1]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:43]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:43]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[1]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:44]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:44]
+WARNING: [Vivado 12-584] No ports matched 'sw[1]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:44]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:44]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[2]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:45]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:45]
+WARNING: [Vivado 12-584] No ports matched 'sw[2]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:45]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:45]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[2]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:46]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:46]
+WARNING: [Vivado 12-584] No ports matched 'sw[2]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:46]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:46]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[3]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:47]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:47]
+WARNING: [Vivado 12-584] No ports matched 'sw[3]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:47]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:47]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[3]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:48]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:48]
+WARNING: [Vivado 12-584] No ports matched 'sw[3]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:48]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:48]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[4]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:49]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:49]
+WARNING: [Vivado 12-584] No ports matched 'sw[4]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:49]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:49]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[4]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:50]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:50]
+WARNING: [Vivado 12-584] No ports matched 'sw[4]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:50]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:50]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[5]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:51]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:51]
+WARNING: [Vivado 12-584] No ports matched 'sw[5]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:51]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:51]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[5]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:52]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:52]
+WARNING: [Vivado 12-584] No ports matched 'sw[5]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:52]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:52]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[6]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:53]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:53]
+WARNING: [Vivado 12-584] No ports matched 'sw[6]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:53]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:53]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[6]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:54]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:54]
+WARNING: [Vivado 12-584] No ports matched 'sw[6]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:54]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:54]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[7]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:55]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:55]
+WARNING: [Vivado 12-584] No ports matched 'sw[7]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:55]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:55]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[7]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:56]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:56]
+WARNING: [Vivado 12-584] No ports matched 'sw[7]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:56]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:56]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[8]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:57]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:57]
+WARNING: [Vivado 12-584] No ports matched 'sw[8]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:57]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:57]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[8]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:58]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:58]
+WARNING: [Vivado 12-584] No ports matched 'sw[8]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:58]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:58]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[9]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:59]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:59]
+WARNING: [Vivado 12-584] No ports matched 'sw[9]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:59]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:59]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[9]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:60]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:60]
+WARNING: [Vivado 12-584] No ports matched 'sw[9]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:60]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:60]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[10]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:61]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:61]
+WARNING: [Vivado 12-584] No ports matched 'sw[10]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:61]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:61]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[10]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:62]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:62]
+WARNING: [Vivado 12-584] No ports matched 'sw[10]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:62]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:62]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[11]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:63]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:63]
+WARNING: [Vivado 12-584] No ports matched 'sw[11]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:63]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:63]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[11]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:64]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:64]
+WARNING: [Vivado 12-584] No ports matched 'sw[11]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:64]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:64]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[12]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:65]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:65]
+WARNING: [Vivado 12-584] No ports matched 'sw[12]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:65]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:65]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[12]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:66]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:66]
+WARNING: [Vivado 12-584] No ports matched 'sw[12]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:66]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:66]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[13]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:67]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:67]
+WARNING: [Vivado 12-584] No ports matched 'sw[13]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:67]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:67]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[13]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:68]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:68]
+WARNING: [Vivado 12-584] No ports matched 'sw[13]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:68]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:68]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[14]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:69]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:69]
+WARNING: [Vivado 12-584] No ports matched 'sw[14]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:69]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:69]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[14]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:70]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:70]
+WARNING: [Vivado 12-584] No ports matched 'sw[14]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:70]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:70]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[15]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:71]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:71]
+WARNING: [Vivado 12-584] No ports matched 'sw[15]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:71]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:71]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[15]'. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:72]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc:72]
+WARNING: [Vivado 12-584] No ports matched 'sw[15]'. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:72]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc:72]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-Finished Parsing XDC File [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/sqoul/Desktop/Chula/Hardware/Final1/src/const_ascii_test.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
+Finished Parsing XDC File [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/const_ascii_test.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1614.898 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1611.371 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1614.898 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1611.371 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:22 . Memory (MB): peak = 1614.898 ; gain = 677.137
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:24 . Memory (MB): peak = 1611.371 ; gain = 675.020
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:22 . Memory (MB): peak = 1614.898 ; gain = 677.137
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:24 . Memory (MB): peak = 1611.371 ; gain = 675.020
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:22 . Memory (MB): peak = 1614.898 ; gain = 677.137
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:24 . Memory (MB): peak = 1611.371 ; gain = 675.020
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:23 . Memory (MB): peak = 1614.898 ; gain = 677.137
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:26 . Memory (MB): peak = 1611.371 ; gain = 675.020
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -223,20 +232,18 @@ Detailed RTL Component Info :
 	   2 Input   32 Bit       Adders := 1     
 	   2 Input   10 Bit       Adders := 2     
 	   2 Input    8 Bit       Adders := 2     
-	   2 Input    2 Bit       Adders := 2     
+	   2 Input    2 Bit       Adders := 1     
 +---Registers : 
 	               12 Bit    Registers := 1     
 	               11 Bit    Registers := 1     
 	               10 Bit    Registers := 4     
 	                8 Bit    Registers := 5     
-	                2 Bit    Registers := 2     
+	                2 Bit    Registers := 1     
 	                1 Bit    Registers := 31    
 +---ROMs : 
 	                    ROMs := 1     
 +---Muxes : 
 	   3 Input   12 Bit        Muxes := 1     
-	   4 Input    8 Bit        Muxes := 1     
-	   4 Input    4 Bit        Muxes := 1     
 	   2 Input    1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -254,22 +261,31 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-WARNING: [Synth 8-3917] design top has port dp driven by constant 1
+WARNING: [Synth 8-7129] Port seg[6] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port seg[5] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port seg[4] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port seg[3] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port seg[2] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port seg[1] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port seg[0] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dp in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port an[3] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port an[2] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port an[1] in module top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port an[0] in module top is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:27 . Memory (MB): peak = 1614.898 ; gain = 677.137
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:30 . Memory (MB): peak = 1611.371 ; gain = 675.020
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
 ROM: Preliminary Mapping Report
-+--------------+--------------------------+---------------+----------------+
-|Module Name   | RTL Object               | Depth x Width | Implemented As | 
-+--------------+--------------------------+---------------+----------------+
-|hexTo7Segment | segments                 | 256x7         | LUT            | 
-|top           | at/rom/addr_reg_reg      | 2048x8        | Block RAM      | 
-|top           | q7seg/segDecode/segments | 256x7         | LUT            | 
-+--------------+--------------------------+---------------+----------------+
++------------+---------------------+---------------+----------------+
+|Module Name | RTL Object          | Depth x Width | Implemented As | 
++------------+---------------------+---------------+----------------+
+|top         | at/rom/addr_reg_reg | 2048x8        | Block RAM      | 
++------------+---------------------+---------------+----------------+
 
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -278,20 +294,20 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:35 . Memory (MB): peak = 1614.898 ; gain = 677.137
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:41 . Memory (MB): peak = 1611.371 ; gain = 675.020
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:36 . Memory (MB): peak = 1614.898 ; gain = 677.137
+Finished Timing Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:42 . Memory (MB): peak = 1611.371 ; gain = 675.020
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-7052] The timing for the instance at/rom/addr_reg_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:36 . Memory (MB): peak = 1614.898 ; gain = 677.137
+Finished Technology Mapping : Time (s): cpu = 00:00:15 ; elapsed = 00:00:42 . Memory (MB): peak = 1611.371 ; gain = 675.020
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -309,37 +325,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:42 . Memory (MB): peak = 1614.898 ; gain = 677.137
+Finished IO Insertion : Time (s): cpu = 00:00:18 ; elapsed = 00:00:50 . Memory (MB): peak = 1611.371 ; gain = 675.020
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:42 . Memory (MB): peak = 1614.898 ; gain = 677.137
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:18 ; elapsed = 00:00:50 . Memory (MB): peak = 1611.371 ; gain = 675.020
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:20 ; elapsed = 00:00:42 . Memory (MB): peak = 1614.898 ; gain = 677.137
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:18 ; elapsed = 00:00:50 . Memory (MB): peak = 1611.371 ; gain = 675.020
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:42 . Memory (MB): peak = 1614.898 ; gain = 677.137
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:18 ; elapsed = 00:00:50 . Memory (MB): peak = 1611.371 ; gain = 675.020
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:42 . Memory (MB): peak = 1614.898 ; gain = 677.137
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:50 . Memory (MB): peak = 1611.371 ; gain = 675.020
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:20 ; elapsed = 00:00:42 . Memory (MB): peak = 1614.898 ; gain = 677.137
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:18 ; elapsed = 00:00:50 . Memory (MB): peak = 1611.371 ; gain = 675.020
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -357,42 +373,43 @@ Report Cell Usage:
 +------+---------+------+
 |1     |BUFG     |     2|
 |2     |CARRY4   |    16|
-|3     |LUT1     |    28|
-|4     |LUT2     |    17|
+|3     |LUT1     |     8|
+|4     |LUT2     |    12|
 |5     |LUT3     |    10|
-|6     |LUT4     |    18|
+|6     |LUT4     |    11|
 |7     |LUT5     |    20|
-|8     |LUT6     |    54|
+|8     |LUT6     |    40|
 |9     |MUXF7    |     1|
 |10    |RAMB18E1 |     1|
 |11    |FDCE     |    44|
-|12    |FDRE     |   104|
+|12    |FDRE     |    83|
 |13    |IBUF     |     3|
-|14    |OBUF     |    27|
+|14    |OBUF     |    15|
+|15    |OBUFT    |    12|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:42 . Memory (MB): peak = 1614.898 ; gain = 677.137
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:18 ; elapsed = 00:00:50 . Memory (MB): peak = 1611.371 ; gain = 675.020
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 2 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:14 ; elapsed = 00:00:40 . Memory (MB): peak = 1614.898 ; gain = 566.430
-Synthesis Optimization Complete : Time (s): cpu = 00:00:20 ; elapsed = 00:00:42 . Memory (MB): peak = 1614.898 ; gain = 677.137
+Synthesis finished with 0 errors, 0 critical warnings and 13 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:47 . Memory (MB): peak = 1611.371 ; gain = 567.207
+Synthesis Optimization Complete : Time (s): cpu = 00:00:18 ; elapsed = 00:00:50 . Memory (MB): peak = 1611.371 ; gain = 675.020
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1614.898 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1611.371 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 18 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1614.898 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1611.371 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: 1ecfaa71
+Synth Design complete | Checksum: debfed7c
 INFO: [Common 17-83] Releasing license: Synthesis
-47 Infos, 40 Warnings, 32 Critical Warnings and 0 Errors encountered.
+43 Infos, 64 Warnings, 32 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:50 . Memory (MB): peak = 1614.898 ; gain = 1077.363
+synth_design: Time (s): cpu = 00:00:21 ; elapsed = 00:00:59 . Memory (MB): peak = 1611.371 ; gain = 1073.398
 INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1614.898 ; gain = 0.000
-INFO: [Common 17-1381] The checkpoint 'C:/Users/sqoul/Desktop/Chula/Hardware/Final1/Final1.runs/synth_1/top.dcp' has been generated.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1611.371 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/Final1.runs/synth_1/top.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Dec  3 14:24:40 2024...
+INFO: [Common 17-206] Exiting Vivado at Tue Dec  3 15:06:54 2024...
