@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Tue Dec  3 14:23:33 2024
+# Process ID: 20748
+# Current directory: C:/Users/sqoul/Desktop/Chula/Hardware/Final1/Final1.runs/synth_1
+# Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
+# Log file: C:/Users/sqoul/Desktop/Chula/Hardware/Final1/Final1.runs/synth_1/top.vds
+# Journal file: C:/Users/sqoul/Desktop/Chula/Hardware/Final1/Final1.runs/synth_1\vivado.jou
+# Running On        :Thanaphom
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :22631
+# Processor Detail  :Intel(R) Core(TM) Ultra 9 185H
+# CPU Frequency     :3072 MHz
+# CPU Physical cores:16
+# CPU Logical cores :22
+# Host memory       :33736 MB
+# Swap memory       :2147 MB
+# Total Virtual     :35883 MB
+# Available Virtual :10842 MB
+#-----------------------------------------------------------
+source top.tcl -notrace
