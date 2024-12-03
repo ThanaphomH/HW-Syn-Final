@@ -103,3 +103,7 @@
 */*/*/bd/*/ip/*/*.tcl
 hw_handoff
 ipshared
+
+Final1.cache/
+Final1.hw/
+Final1.runs/
