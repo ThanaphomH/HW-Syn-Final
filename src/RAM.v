@@ -4,6 +4,7 @@ module DualPortRAM #(
     parameter COLS = 8                 // Number of columns
 ) (
     input wire clk,                      // Clock signal
+    input wire rst,                      // Reset signal (active high)
     input wire we,                       // Write enable for the write port
     input wire [$clog2(ROWS)-1:0] w_row, // Row address for the write port
     input wire [$clog2(COLS)-1:0] w_col, // Column address for the write port
@@ -16,9 +17,18 @@ module DualPortRAM #(
     // Memory declaration: 2D array
     reg [DATA_WIDTH-1:0] mem [0:ROWS-1][0:COLS-1];
 
+    integer i, j;
+
     // Write operation
-    always @(posedge clk) begin
-        if (we) begin
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            // Reset all memory elements to 0
+            for (i = 0; i < ROWS; i = i + 1) begin
+                for (j = 0; j < COLS; j = j + 1) begin
+                    mem[i][j] <= 0;
+                end
+            end
+        end else if (we) begin
             mem[w_row][w_col] <= din;   // Write data to specified address
         end
     end
