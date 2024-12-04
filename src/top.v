@@ -73,7 +73,7 @@ module top(
         end
     end
 
-    DualPortRAM ram(clk,0, we, wy, wx, O, ry, rx, rdata);
+    DualPortRAM ram(clk, we, wy, wx, O, ry, rx, rdata);
 
     // rgb buffer
     always @(posedge clk)
