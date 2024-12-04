@@ -36,7 +36,7 @@ module top(
     wire [11:0] rgb_next;
     wire [7:0] O;
     
-    reg we;
+    wire we;
     reg [4:0] wx, rx;
     reg [1:0] wy, ry;
     wire [7:0]rdata;
@@ -50,18 +50,19 @@ module top(
     
     uart uart_instance(clk, RsRx, RsTx, O, we); // Instance of uart
 
-    @always(posedge we) begin
-        if (wx == 0'b11111) begin
-            wx = 0;
-            if (wy == 0'b11) begin
-                wy = 0;
-            else
-                wy += 1;
-            end
-        else
-            wx += 1;
+   always @(posedge we) begin
+    if (wx == 5'b11111) begin 
+        wx = 0;
+        if (wy == 2'b11) begin 
+            wy = 0;
+        end else begin
+            wy = wy + 1; 
         end
+    end else begin
+        wx = wx + 1; 
     end
+    end
+
 
     DualPortRAM ram(clk, we, wy, wx, O, ry, rx, rdata);
 
@@ -74,6 +75,6 @@ module top(
     assign rgb = rgb_reg;
     
     // 7seg board
-    quadSevenSeg q7seg(seg, dp, an0, an1, an2, an3,O, O,O, O, targetClk);
+//    quadSevenSeg q7seg(seg, dp, an0, an1, an2, an3,O, O,O, O, targetClk);
       
 endmodule

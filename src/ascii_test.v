@@ -44,6 +44,8 @@ module ascii_test(
             if(ascii_bit_on)
                 rgb = 12'h00F;  // blue letters
             else
-                rgb = 12'hFFF;  // white background
+                if (y >= 472) 
+                    rgb = 12'h0F0;
+                else rgb = 12'hFFF;  // white background
    
 endmodule
