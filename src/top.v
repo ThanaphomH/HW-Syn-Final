@@ -49,7 +49,7 @@ module top(
     ascii_test at(.clk(clk), .video_on(w_video_on), .x(w_x), .y(w_y), .rgb(rgb_next), .ascii_code(rdata[6:0]));
     
     uart uart_instance(clk, RsRx, RsTx, O, we); // Instance of uart
-
+    
    always @(posedge we) begin
     if (wx == 5'b11111) begin 
         wx = 0;
@@ -63,8 +63,7 @@ module top(
     end
     end
 
-
-    DualPortRAM ram(clk, we, wy, wx, O, ry, rx, rdata);
+    DualPortRAM ram(clk,0, we, wy, wx, O, ry, rx, rdata);
 
     // rgb buffer
     always @(posedge clk)
@@ -75,6 +74,6 @@ module top(
     assign rgb = rgb_reg;
     
     // 7seg board
-//    quadSevenSeg q7seg(seg, dp, an0, an1, an2, an3,O, O,O, O, targetClk);
+//    quadSevenSeg q7seg(seg, dp, an0, an1, an2, an3,O, O,{0,0,0,0,0,0,0,we}, rdata, targetClk);
       
 endmodule

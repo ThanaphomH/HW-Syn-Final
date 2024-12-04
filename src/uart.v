@@ -50,8 +50,6 @@ module uart(
             end else begin
                 we = 0;
             end
-        end else begin
-            we = 0;
         end
     
         last_rec = received;
