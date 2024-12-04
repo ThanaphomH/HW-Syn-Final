@@ -1,7 +1,7 @@
 module DualPortRAM #(
     parameter DATA_WIDTH = 8,          // Width of each data element
-    parameter ROWS = 8,                // Number of rows
-    parameter COLS = 8                 // Number of columns
+    parameter ROWS = 4,                // Number of rows
+    parameter COLS = 32                 // Number of columns
 ) (
     input wire clk,                      // Clock signal
     input wire rst,                      // Reset signal (active high)

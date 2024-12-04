@@ -37,9 +37,14 @@ module top(
     wire [7:0] O;
     
     wire we;
-    reg [4:0] wx, rx;
-    reg [1:0] wy, ry;
+    reg [4:0] wx;
+    reg [1:0] wy;
+    wire [4:0] rx;
+    wire [1:0] ry;
     wire [7:0]rdata;
+    
+    assign rx = w_x[7:3];
+    assign ry = w_y[5:4];
     
     // VGA Controller
     vga_controller vga(.clk_100MHz(clk), .reset(reset), .hsync(hsync), .vsync(vsync),
