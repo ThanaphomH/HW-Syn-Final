@@ -57,11 +57,7 @@ if {$::dispatch::connected} {
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 5
-set_param checkpoint.writeSynthRtdsInDcp 1
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -79,10 +75,12 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
+  C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/RAM.v
   C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/ascii_rom.v
   C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/ascii_test.v
   C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/baudrate_gen.v
   C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/clockDiv.v
+  C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/singlePulser.v
   C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/uart.v
   C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/uart_rx.v
   C:/Users/sqoul/Desktop/Chula/Hardware/HW-Syn-Final/src/uart_tx.v

@@ -50,17 +50,22 @@ module top(
     
     uart uart_instance(clk, RsRx, RsTx, O, we); // Instance of uart
     
-   always @(posedge we) begin
-    if (wx == 5'b11111) begin 
-        wx = 0;
-        if (wy == 2'b11) begin 
-            wy = 0;
-        end else begin
-            wy = wy + 1; 
+    wire sharp_we;
+    singlePulser( .d(sharp_we) , .pushed(we), .clk(clk));
+    
+    always @(posedge clk) begin
+        if (sharp_we) begin
+            if (wx == 5'b11111) begin 
+                wx = 0;
+                if (wy == 2'b11) begin 
+                    wy = 0;
+                end else begin
+                    wy = wy + 1; 
+                end
+            end else begin
+                wx = wx + 1; 
+            end
         end
-    end else begin
-        wx = wx + 1; 
-    end
     end
 
     DualPortRAM ram(clk,0, we, wy, wx, O, ry, rx, rdata);

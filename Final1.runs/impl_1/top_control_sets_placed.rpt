@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Tue Dec  3 15:10:57 2024
+| Date         : Wed Dec  4 14:33:23 2024
 | Host         : Thanaphom running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    20 |
-|    Minimum number of control sets                        |    20 |
+| Total control sets                                       |    22 |
+|    Minimum number of control sets                        |    22 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    87 |
+| Unused register locations in slices containing registers |    95 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,13 +39,13 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    20 |
-| >= 0 to < 4        |    10 |
-| >= 4 to < 6        |     0 |
-| >= 6 to < 8        |     1 |
+| Total control sets |    22 |
+| >= 0 to < 4        |     9 |
+| >= 4 to < 6        |     1 |
+| >= 6 to < 8        |     2 |
 | >= 8 to < 10       |     4 |
 | >= 10 to < 12      |     2 |
-| >= 12 to < 14      |     1 |
+| >= 12 to < 14      |     2 |
 | >= 14 to < 16      |     0 |
 | >= 16              |     2 |
 +--------------------+-------+
@@ -58,11 +58,11 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               8 |            4 |
-| No           | No                    | Yes                    |              34 |           16 |
-| No           | Yes                   | No                     |              48 |           11 |
-| Yes          | No                    | No                     |              36 |           15 |
-| Yes          | No                    | Yes                    |              10 |            4 |
+| No           | No                    | No                     |              19 |            8 |
+| No           | No                    | Yes                    |              34 |           11 |
+| No           | Yes                   | No                     |              48 |           12 |
+| Yes          | No                    | No                     |              49 |           23 |
+| Yes          | No                    | Yes                    |              10 |            3 |
 | Yes          | Yes                   | No                     |               1 |            1 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -73,25 +73,27 @@ Table of Contents
 +----------------+-------------------------------------------+-----------------------------------------------+------------------+----------------+--------------+
 |  Clock Signal  |               Enable Signal               |                Set/Reset Signal               | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------+-------------------------------------------+-----------------------------------------------+------------------+----------------+--------------+
-|  baud_BUFG     | uart_instance/receiver/data_out[0]        |                                               |                1 |              1 |         1.00 |
-|  baud_BUFG     | uart_instance/receiver/data_out[1]        |                                               |                1 |              1 |         1.00 |
-|  baud_BUFG     | uart_instance/receiver/data_out[2]        |                                               |                1 |              1 |         1.00 |
-|  baud_BUFG     | uart_instance/receiver/data_out[3]        |                                               |                1 |              1 |         1.00 |
-|  baud_BUFG     | uart_instance/receiver/data_out[4]        |                                               |                1 |              1 |         1.00 |
-|  baud_BUFG     | uart_instance/transmitter/bit_out_i_2_n_0 | uart_instance/transmitter/bit_out0            |                1 |              1 |         1.00 |
-|  baud_BUFG     | uart_instance/receiver/data_out[6]        |                                               |                1 |              1 |         1.00 |
-|  baud_BUFG     | uart_instance/receiver/data_out[5]        |                                               |                1 |              1 |         1.00 |
 |  baud_BUFG     | uart_instance/receiver/data_out[7]        |                                               |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG |                                           |                                               |                1 |              1 |         1.00 |
+|  baud_BUFG     | uart_instance/receiver/data_out[2]        |                                               |                1 |              1 |         1.00 |
+|  baud_BUFG     | uart_instance/receiver/data_out[5]        |                                               |                1 |              1 |         1.00 |
+|  baud_BUFG     | uart_instance/receiver/data_out[6]        |                                               |                1 |              1 |         1.00 |
+|  baud_BUFG     | uart_instance/receiver/data_out[0]        |                                               |                1 |              1 |         1.00 |
+|  baud_BUFG     | uart_instance/receiver/data_out[4]        |                                               |                1 |              1 |         1.00 |
+|  baud_BUFG     | uart_instance/receiver/data_out[1]        |                                               |                1 |              1 |         1.00 |
+|  baud_BUFG     | uart_instance/receiver/data_out[3]        |                                               |                1 |              1 |         1.00 |
+|  baud_BUFG     | uart_instance/transmitter/bit_out_i_2_n_0 | uart_instance/transmitter/bit_out0            |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG | nolabel_line54/sharp_we                   |                                               |                1 |              5 |         5.00 |
 |  baud_BUFG     |                                           |                                               |                3 |              7 |         2.33 |
-|  baud_BUFG     |                                           | uart_instance/receiver/count[7]_i_1_n_0       |                1 |              8 |         8.00 |
+|  clk_IBUF_BUFG | uart_instance/E[0]                        |                                               |                5 |              7 |         1.40 |
+|  baud_BUFG     |                                           | uart_instance/receiver/count[7]_i_1_n_0       |                2 |              8 |         4.00 |
 |  baud_BUFG     |                                           | uart_instance/transmitter/count[7]_i_1__0_n_0 |                2 |              8 |         4.00 |
-|  baud_BUFG     | uart_instance/receiver/E[0]               |                                               |                1 |              8 |         8.00 |
-|  baud_BUFG     | uart_instance/transmitter/temp[7]_i_1_n_0 |                                               |                1 |              8 |         8.00 |
-|  vga/E[0]      |                                           | reset_IBUF                                    |                4 |             10 |         2.50 |
-|  vga/E[0]      | vga/v_count_next_1                        | reset_IBUF                                    |                4 |             10 |         2.50 |
-|  clk_IBUF_BUFG | vga/E[0]                                  |                                               |                5 |             12 |         2.40 |
-|  clk_IBUF_BUFG |                                           | reset_IBUF                                    |               12 |             24 |         2.00 |
+|  baud_BUFG     | uart_instance/transmitter/temp[7]_i_1_n_0 |                                               |                2 |              8 |         4.00 |
+|  baud_BUFG     | uart_instance/receiver/E[0]               |                                               |                3 |              9 |         3.00 |
+|  vga/E[0]      |                                           | reset_IBUF                                    |                3 |             10 |         3.33 |
+|  vga/E[0]      | vga/v_count_next_1                        | reset_IBUF                                    |                3 |             10 |         3.33 |
+|  clk_IBUF_BUFG |                                           |                                               |                5 |             12 |         2.40 |
+|  clk_IBUF_BUFG | vga/E[0]                                  |                                               |                4 |             12 |         3.00 |
+|  clk_IBUF_BUFG |                                           | reset_IBUF                                    |                8 |             24 |         3.00 |
 |  clk_IBUF_BUFG |                                           | uart_instance/baudrate_gen/clear              |                8 |             32 |         4.00 |
 +----------------+-------------------------------------------+-----------------------------------------------+------------------+----------------+--------------+
 
