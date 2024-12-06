@@ -20,8 +20,8 @@ module DualPortRAM #(
     reg [DATA_WIDTH-1:0] mem [0:ROWS-1][0:COLS-1];
     reg resetting;
 
-    reg [4:0] reset_row;
-    reg [1:0] reset_col;
+    reg [$clog2(ROWS)-1:0] reset_row;
+    reg [$clog2(COLS)-1:0] reset_col;
 
     always @(posedge clk) begin
         // Reset all memory slot at once will result in black monitor, 
@@ -30,7 +30,7 @@ module DualPortRAM #(
             mem[reset_row][reset_col] <= 8'b00000000;
 
             // move reset cursor to cover all memory slot
-            if (reset_row == 5'b11111 && reset_col == 2'b11) begin
+            if (reset_row == ROWS-1 && reset_col == COLS-1) begin
                 resetting = 0;
             end else if (reset_col == 2'b11) begin
                 reset_col = 0;
