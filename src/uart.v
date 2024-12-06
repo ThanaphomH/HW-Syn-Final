@@ -43,13 +43,13 @@ module uart(
         if (~last_rec & received) begin
             data_in = data_out;
             data_2 = data_out;
+            we = 1;
             
             if (data_in <= 8'h7A && data_in >= 8'h21) begin
                 en = 1;
-                we = 1;
-            end else begin
-                we = 0;
-            end
+            end 
+        end else begin
+            we = 0;
         end
     
         last_rec = received;
