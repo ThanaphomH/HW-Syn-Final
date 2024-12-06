@@ -18,6 +18,7 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+`timescale 1ns / 1ps
 
 module uart_tx(
     input clk,
@@ -25,7 +26,6 @@ module uart_tx(
     input ena,
     output reg sent,
     output reg bit_out
-  
     );
     
     reg last_ena;
@@ -46,7 +46,7 @@ module uart_tx(
         if (sending)    count <= count + 1;
         else            begin count <= 0; bit_out <= 1; end
         
-        // sampling every 16 ticks
+        // Transmit every 16 ticks
         case (count)
             8'd8: bit_out <= 0;
             8'd24: bit_out <= temp[0];  

@@ -18,43 +18,33 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+`timescale 1ns / 1ps
 
 module uart(
     input clk,
-    input RsRx,
-    output RsTx,
-    output reg [7:0]  data_2 ,
-    output reg we,
-    input tx_start,        // New input signal to start transmission
-    input [7:0] tx_data    // New input signal for data to transmit
+    input rx,
+    input [7:0] data_transmit,
+    input dte,
+    output tx,
+    output [7:0] data_received,
+    output received
     );
     
-    reg last_rec;
-    reg [7:0] data_in;
-    reg en;
-    wire [7:0] data_out;
-    wire sent, received, baud;
-    
+    reg en, last_rec;
+    wire [7:0] data;
+    wire baud;
+    wire sent;
+    assign data = data_transmit;
     baudrate_gen baudrate_gen(clk, baud);
-    uart_rx receiver(baud, RsRx, received, data_out);
-    uart_tx transmitter(baud, data_in, en, sent, RsTx);
+    uart_rx receiver(baud, rx, received, data_received);
+    uart_tx transmitter(baud, data, en, sent, tx);
     
     always @(posedge baud) begin
-        if (~last_rec & received) begin
-            data_2 = data_out;
-            we = 1;
-        end else begin
-            we = 0;
-        end
-
-        // Transmission logic
-        if (tx_start) begin
-            data_in = tx_data;
+        if (en) en = 0;
+        if ((~last_rec & received) || dte) begin
             en = 1;
         end
-    
         last_rec = received;
     end
-
     
 endmodule
