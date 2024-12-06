@@ -19,9 +19,9 @@ module DualPortRAM #(
     // Memory declaration: 2D array
     reg [DATA_WIDTH-1:0] mem [0:ROWS-1][0:COLS-1];
 
+    integer i, j;
     always @(posedge clk) begin
         if (reset) begin
-            integer i, j;
             for (i = 0; i < ROWS; i = i + 1) begin
                 for (j = 0; j < COLS; j = j + 1) begin
                     mem[i][j] <= {DATA_WIDTH{1'b0}}; 

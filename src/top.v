@@ -2,6 +2,7 @@
 
 module top(
     input clk,          // 100MHz on Basys 3
+    input reset,
     input btnD,        // btnD on Basys 3
     output hsync,       // to VGA connector
     output vsync,       // to VGA connector
@@ -13,8 +14,6 @@ module top(
     output [3:0] an
     );
     
-    wire reset;
-    assign reset = btnD;
     
     wire [3:0] num3, num2, num1, num0; // left to right
     wire an0, an1, an2, an3;
@@ -74,7 +73,7 @@ module top(
     singlePulser( .d(sharp_we) , .pushed(we), .clk(clk));
 
     wire sharp_reset;
-    singlePulser( .d(sharp_reset) , .pushed(reset), .clk(clk));
+    singlePulser( .d(sharp_reset) , .pushed(btnD), .clk(clk));
     
     wire delay_we;
     delay_one_cycle delay(.clk(clk), .original_signal(sharp_we), .delayed_signal(delay_we));

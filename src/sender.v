@@ -18,29 +18,24 @@ module sender (
     uart uart_instance(clk, RsRx, RsTx, O, we); // Instance of uart
     
     // USB
-    reg CLK50MHZ=0;
-    always @(posedge(clk))begin
-        CLK50MHZ<=~CLK50MHZ;
-    end
-    
-    wire [15:0] keycode;
+    wire [7:0] keycode;
     wire flag;
-    PS2Receiver uut (
-        .clk(CLK50MHZ),
-        .kclk(PS2Clk),
-        .kdata(PS2Data),
+    ps2_keyboard uut (
+        .clk(clk),
+        .ps2_clk(PS2Clk),
+        .ps2_data(PS2Data),
         .keycode(keycode),
-        .oflag(flag)
+        .key_valid(flag)
     );
     
     reg [7:0] input_switchs;
     wire [3:0] num3, num2, num1, num0; // left to right
     wire an0, an1, an2, an3;
     assign an = {an3, an2, an1, an0};
-    assign num3 = keycode[15:8];
-    assign num2 = keycode[7:0];
-    assign num1 = input_switchs;
-    assign num0 = input_switchs;
+    assign num3 = keycode[7:4];
+    assign num2 = keycode[3:0];
+    assign num1 = input_switchs[7:4];
+    assign num0 = input_switchs[3:0];
     
     wire sp_btnU;
     singlePulser pulser( .d(sp_btnU),.pushed(btnU),.clk(clk));

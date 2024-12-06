@@ -1,84 +1,36 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: Digilent Inc.
-// Engineer: Thomas Kappenman
-// 
-// Create Date: 03/03/2015 09:33:36 PM
-// Design Name: 
-// Module Name: PS2Receiver
-// Project Name: Nexys4DDR Keyboard Demo
-// Target Devices: Nexys4DDR
-// Tool Versions: 
-// Description: PS2 Receiver module used to shift in keycodes from a keyboard plugged into the PS2 port
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
-
-module PS2Receiver(
-    input clk,
-    input kclk,
-    input kdata,
-    output reg [15:0] keycode=0,
-    output reg oflag
-    );
-    
-    wire kclkf, kdataf;
-    reg [7:0]datacur=0;
-    reg [7:0]dataprev=0;
-    reg [3:0]cnt=0;
-    reg flag=0;
-    
-debouncer #(
-    .COUNT_MAX(19),
-    .COUNT_WIDTH(5)
-) db_clk(
-    .clk(clk),
-    .I(kclk),
-    .O(kclkf)
+module ps2_keyboard(
+    input wire clk,           // System clock
+    input wire ps2_clk,       // PS/2 clock
+    input wire ps2_data,      // PS/2 data
+    output reg [7:0] keycode, // Output keycode
+    output reg key_valid      // Valid key signal
 );
-debouncer #(
-   .COUNT_MAX(19),
-   .COUNT_WIDTH(5)
-) db_data(
-    .clk(clk),
-    .I(kdata),
-    .O(kdataf)
-);
-    
-always@(negedge(kclkf))begin
-    case(cnt)
-    0:;//Start bit
-    1:datacur[0]<=kdataf;
-    2:datacur[1]<=kdataf;
-    3:datacur[2]<=kdataf;
-    4:datacur[3]<=kdataf;
-    5:datacur[4]<=kdataf;
-    6:datacur[5]<=kdataf;
-    7:datacur[6]<=kdataf;
-    8:datacur[7]<=kdataf;
-    9:flag<=1'b1;
-    10:flag<=1'b0;
-    
-    endcase
-        if(cnt<=9) cnt<=cnt+1;
-        else if(cnt==10) cnt<=0;
-end
 
-reg pflag;
-always@(posedge clk) begin
-    if (flag == 1'b1 && pflag == 1'b0) begin
-        keycode <= {dataprev, datacur};
-        oflag <= 1'b1;
-        dataprev <= datacur;
-    end else
-        oflag <= 'b0;
-    pflag <= flag;
-end
+    reg [10:0] shift_reg = 0; // 11-bit shift register for PS/2 protocol
+    reg [3:0] bit_count = 0;  // Counter for bits received
+    reg ps2_clk_prev = 1;     // Previous state of PS/2 clock for edge detection
+
+    always @(posedge clk) begin
+        // Detect falling edge of ps2_clk
+        if (ps2_clk_prev && ~ps2_clk) begin
+            shift_reg <= {ps2_data, shift_reg[10:1]}; // Shift in data bit
+            bit_count <= bit_count + 1;              // Increment bit counter
+
+            // Check for complete frame (11 bits)
+            if (bit_count == 10) begin
+                bit_count <= 0;                  // Reset bit counter
+                if (shift_reg[0] == 0 &&        // Start bit must be 0
+                    shift_reg[10] == 1) begin   // Stop bit must be 1
+                    keycode <= shift_reg[8:1]; // Extract keycode (8 bits)
+                    key_valid <= 1;            // Set valid key signal
+                end else begin
+                    key_valid <= 0;            // Invalid frame
+                end
+            end
+        end else begin
+            key_valid <= 0; // Reset valid key signal on no new data
+        end
+        ps2_clk_prev <= ps2_clk; // Update previous clock state
+    end
 
 endmodule
