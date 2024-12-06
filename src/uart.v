@@ -30,6 +30,8 @@ module uart(
     );
     
     reg last_rec;
+    reg [7:0] data_in;
+    reg en;
     wire [7:0] data_out;
     wire sent, received, baud;
     
