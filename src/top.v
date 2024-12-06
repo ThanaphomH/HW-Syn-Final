@@ -75,14 +75,25 @@ module top(
     
     always @(posedge clk) begin
         if (delay_we) begin
-            if (wx == 5'b11111) begin 
-                wx = 0;
-            end else if (wx = 5'b10111) begin
-                wx = 5'b11000; 
+            // Newline: Shift y and move to the first column of next line
+            if (O == 8'b01000100) begin
+                wx = 5'b11000
                 if (wy == 2'b11) begin 
-                    wy = 0;
-                end else begin
-                    wy = wy + 1; 
+                        wy = 0;
+                    end else begin
+                        wy = wy + 1; 
+                    end
+            end else begin
+                // Normal cursor shift: use some simple black magic to make it correctly align
+                if (wx == 5'b11111) begin 
+                    wx = 0;
+                end else if (wx = 5'b10111) begin
+                    wx = 5'b11000; 
+                    if (wy == 2'b11) begin 
+                        wy = 0;
+                    end else begin
+                        wy = wy + 1; 
+                    end
                 end
             end
         end
