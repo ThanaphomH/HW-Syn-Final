@@ -71,6 +71,7 @@ module top(
     singlePulser( .d(sharp_we) , .pushed(we), .clk(clk));
     
     reg delay_we;
+    reg [7:0] delay_O;
     // delay_one_cycle delay(.clk(clk), .original_signal(sharp_we), .delayed_signal(delay_we));
     
     always @(posedge clk) begin
@@ -90,9 +91,12 @@ module top(
                     wy = wy + 1; 
                 end
             end else begin
+                delay_O = O;
                 delay_we = 1;
             end
+        end
 
+        if (delay_we) begin 
             // move cursor and use position shifting magic to make it correctly align
             if (wx == 5'b11111) begin 
                 wx = 0;
@@ -108,7 +112,7 @@ module top(
     end
 
     wire [7:0] sa, si;
-    DualPortRAM ram(clk, delay_we, wy, wx, O, ry, rx, rdata, sa, si);
+    DualPortRAM ram(clk, delay_we, wy, wx, delay_O, ry, rx, rdata, sa, si);
 
     // rgb buffer
     always @(posedge clk)
