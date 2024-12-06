@@ -102,6 +102,11 @@ module top(
                 wx = wx + 1;            
             end
         end
+
+        if (sharp_reset) begin
+            wx = 5'b11000;
+            wy = 2'b01;
+        end
     end
 
     wire [7:0] sa, si;
