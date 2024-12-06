@@ -2,7 +2,7 @@
 
 module top(
     input clk,          // 100MHz on Basys 3
-    input reset,        // btnC on Basys 3
+    input btnD,        // btnD on Basys 3
     output hsync,       // to VGA connector
     output vsync,       // to VGA connector
     output [11:0] rgb,   // to DAC, to VGA connector
@@ -12,6 +12,8 @@ module top(
     output dp,
     output [3:0] an
     );
+    
+    assign reset = btnD;
     
     wire [3:0] num3, num2, num1, num0; // left to right
     wire an0, an1, an2, an3;

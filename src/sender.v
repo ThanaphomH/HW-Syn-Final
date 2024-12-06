@@ -42,10 +42,23 @@ module sender (
     assign num1 = input_switchs;
     assign num0 = input_switchs;
     
+    wire sp_btnU;
+    singlePulser pulser( .d(sp_btnU),.pushed(btnU),.clk(clk));
     always @(posedge clk) begin
-        input_switchs <= sw;
+        if (sp_btnU) input_switchs <= sw;
     end
 
-    quadSevenSeg segment( seg, dp, an0, an1, an2, an3, num0, num1, num2, num3,clk );
+    reg [17:0] clk_counter = 0;
+    reg target_enable = 0;
+    always @(posedge clk) begin
+        if (clk_counter == 18'h3FFFF) begin // Adjust this for your desired frequency
+            clk_counter <= 0;
+            target_enable <= 1;
+        end else begin
+            clk_counter <= clk_counter + 1;
+            target_enable <= 0;
+        end
+    end
+    quadSevenSeg segment( seg, dp, an0, an1, an2, an3, num0, num1, num2, num3, target_enable );
 
 endmodule
