@@ -1,6 +1,6 @@
 -------------------------------------
 | Tool Version : Vivado v.2024.1
-| Date         : Wed Dec  4 14:33:21 2024
+| Date         : Fri Dec  6 14:02:57 2024
 | Host         : Thanaphom
 | Design       : design_1
 | Device       : xc7a35t-cpg236-1--
