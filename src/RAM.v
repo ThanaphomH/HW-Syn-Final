@@ -13,7 +13,7 @@ module DualPortRAM (
 );
 
     // Memory declaration: 2D array
-    reg [7:0] mem [0:3][0:32];
+    reg [7:0] mem [0:3][0:31];
     reg resetting;
 
     reg [4:0] reset_row;
@@ -22,10 +22,11 @@ module DualPortRAM (
     // Write operation
     always @(posedge clk) begin
         // Reset all memory slot at once will result in black monitor, 
-        // attempt re reset one memory cell per clock instead
+        // attempt to reset one memory cell per clock instead
         if(resetting) begin
-            mem[w_row][w_col] <= 8b'00000000;
+            mem[reset_row][reset_col] <= 8b'00000000;
 
+            // move reset cursor to cover all memory slot
             if (reset_row == 5'b11111 && reset_col == 2b'11) begin
                 resetting = 0;
             end else if (reset_col == 2b'11) begin
