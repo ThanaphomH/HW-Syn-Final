@@ -13,6 +13,7 @@ module top(
     output [3:0] an
     );
     
+    wire reset;
     assign reset = btnD;
     
     wire [3:0] num3, num2, num1, num0; // left to right
