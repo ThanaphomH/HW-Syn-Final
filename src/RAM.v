@@ -5,6 +5,7 @@ module DualPortRAM #(
 ) (
     input wire clk,                      // Clock signal
     input wire we,                       // Write enable for the write port
+    input wire reset,                    // Synchronous reset signal
     input wire [$clog2(ROWS)-1:0] w_row, // Row address for the write port
     input wire [$clog2(COLS)-1:0] w_col, // Column address for the write port
     input wire [DATA_WIDTH-1:0] din,     // Data input for the write port
@@ -20,7 +21,14 @@ module DualPortRAM #(
 
     // Write operation
     always @(posedge clk) begin
-        if (we && O != 8'b00001101 && O != 8'b00001010) begin
+        if (reset) begin
+            integer i, j;
+            for (i = 0; i < ROWS; i = i + 1) begin
+                for (j = 0; j < COLS; j = j + 1) begin
+                    mem[i][j] <= {DATA_WIDTH{1'b0}}; 
+                end
+            end
+        end else if (we && O != 8'b00001101 && O != 8'b00001010) begin
             mem[w_row][w_col] <= din;   // Write data to specified address
         end
     end

@@ -69,6 +69,9 @@ module top(
     
     wire sharp_we;
     singlePulser( .d(sharp_we) , .pushed(we), .clk(clk));
+
+    wire sharp_reset;
+    singlePulser( .d(sharp_reset) , .pushed(reset), .clk(clk));
     
     wire delay_we;
     delay_one_cycle delay(.clk(clk), .original_signal(sharp_we), .delayed_signal(delay_we));
@@ -102,7 +105,7 @@ module top(
     end
 
     wire [7:0] sa, si;
-    DualPortRAM ram(clk, sharp_we, wy, wx, O, ry, rx, rdata, sa, si);
+    DualPortRAM ram(clk, sharp_we, sharp_reset, wy, wx, O, ry, rx, rdata, sa, si);
 
     // rgb buffer
     always @(posedge clk)
