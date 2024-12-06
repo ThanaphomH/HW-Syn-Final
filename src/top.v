@@ -77,7 +77,7 @@ module top(
         if (delay_we) begin
             if (wx == 5'b11111) begin 
                 wx = 0;
-            end else if (wx = 5'b10111) begin
+            end else if (wx == 5'b10111) begin
                 wx = 5'b11000; 
                 if (wy == 2'b11) begin 
                     wy = 0;
