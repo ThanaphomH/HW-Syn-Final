@@ -1,26 +1,28 @@
-module DualPortRAM (
+module DualPortRAM #(
+    parameter DATA_WIDTH = 8,          // Width of each data element
+    parameter ROWS = 4,                // Number of rows
+    parameter COLS = 32                 // Number of columns
+) (
     input wire clk,                      // Clock signal
     input wire we,                       // Write enable for the write port
     input wire reset,                    // Synchronous reset signal
-    input wire [4:0] w_row, // Row address for the write port
-    input wire [1:0] w_col, // Column address for the write port
-    input wire [7:0] din,     // Data input for the write port
-    input wire [4:0] r_row, // Row address for the read port
-    input wire [1:0] r_col, // Column address for the read port
-    output reg [7:0] dout,     // Data output for the read port
-    output reg [7:0] tdout1,   // Data output for the read port
-    output reg [7:0] tdout2
+    input wire [$clog2(ROWS)-1:0] w_row, // Row address for the write port
+    input wire [$clog2(COLS)-1:0] w_col, // Column address for the write port
+    input wire [DATA_WIDTH-1:0] din,     // Data input for the write port
+    input wire [$clog2(ROWS)-1:0] r_row, // Row address for the read port
+    input wire [$clog2(COLS)-1:0] r_col, // Column address for the read port
+    output reg [DATA_WIDTH-1:0] dout,     // Data output for the read port
+    output reg [DATA_WIDTH-1:0] tdout1,   // Data output for the read port
+    output reg [DATA_WIDTH-1:0] tdout2
 );
 
     // Memory declaration: 2D array
-    reg [7:0] mem [0:3][0:31];
+    reg [DATA_WIDTH-1:0] mem [0:ROWS-1][0:COLS-1];
     reg resetting;
 
     reg [4:0] reset_row;
     reg [1:0] reset_col;
 
-    // Write operation
-    integer i, j;
     always @(posedge clk) begin
         // Reset all memory slot at once will result in black monitor, 
         // attempt to reset one memory cell per clock instead
@@ -36,7 +38,7 @@ module DualPortRAM (
             end else begin
                 reset_col = reset_col + 1;
             end
-        end if (reset) begin
+        end else if (reset) begin
             reset_row = 0;
             reset_col = 0;
             resetting = 1;
