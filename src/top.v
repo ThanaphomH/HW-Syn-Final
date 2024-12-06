@@ -79,10 +79,10 @@ module top(
             if (O == 8'b01000100) begin
                 wx = 5'b11000
                 if (wy == 2'b11) begin 
-                        wy = 0;
-                    end else begin
-                        wy = wy + 1; 
-                    end
+                    wy = 0;
+                end else begin
+                    wy = wy + 1; 
+                end
             end else begin
                 // Normal cursor shift: use some simple black magic to make it correctly align
                 if (wx == 5'b11111) begin 
@@ -95,6 +95,8 @@ module top(
                         wy = wy + 1; 
                     end
                 end
+            end else begin
+                wx = wx + 1;            
             end
         end
     end
