@@ -78,12 +78,12 @@ module top(
 
         if (we) begin
             // case newline
-            if (O == 8'01000100) begin 
+            if (O == 8'b01000100) begin 
                 // does not need to write to ram, just move cursor
                 delay_we = 0;
 
                 // move cursor to the first column of next line
-                wx = 5'1000100;
+                wx = 5'b1000100;
                 if (wy == 2'b11) begin 
                     wy = 0;
                 end else begin
@@ -96,7 +96,7 @@ module top(
             // move cursor and use position shifting magic to make it correctly align
             if (wx == 5'b11111) begin 
                 wx = 0;
-            end else if (wx = 5'b10111) begin
+            end else if (wx == 5'b10111) begin
                 wx = 5'b11000; 
                 if (wy == 2'b11) begin 
                     wy = 0;
@@ -119,6 +119,6 @@ module top(
     assign rgb = rgb_reg;
     
     // 7seg board
-    quadSevenSeg q7seg(seg, dp, an0, an1, an2, an3,wx[3:0], {0,0, wy[1:0]}, rx[3:0], {0,0, ry[1:0]}, target_enable);
+    quadSevenSeg q7seg(seg, dp, an0, an1, an2, an3,wx[3:0], {0,0, wy[1:0]}, sa[3:0], sa[7:4] , target_enable);
       
 endmodule

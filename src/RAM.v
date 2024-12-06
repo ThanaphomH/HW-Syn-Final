@@ -28,7 +28,7 @@ module DualPortRAM #(
     // Read operation
     always @(posedge clk) begin
         dout <= mem[r_row][r_col];      // Read data from specified address
-        tdout1 <= mem[0][0];      // Read data from specified address
+        tdout1 <= mem[w_row][w_col-1];      // Read data from specified address
         tdout2 <= mem[0][1];      // Read data from specified address
     end
 
