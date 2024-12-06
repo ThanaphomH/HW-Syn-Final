@@ -84,6 +84,8 @@ module top(
                 end else begin
                     wy = wy + 1; 
                 end
+            end else begin
+                wx = wx + 1;            
             end
         end
     end
