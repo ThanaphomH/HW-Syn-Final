@@ -56,6 +56,9 @@ module top(
     wire [4:0] rx;
     wire [1:0] ry;
     wire [7:0] rdata;
+
+    reg tx_start;
+    reg [7:0] tx_data;
     
     assign rx = w_x[7:3];
     assign ry = w_y[5:4];
@@ -67,7 +70,7 @@ module top(
     // Text Generation Circuit
     ascii_test at(.clk(clk), .video_on(w_video_on), .x(w_x), .y(w_y), .rgb(rgb_next), .ascii_code(rdata[6:0]));
     
-    uart uart_instance(clk, RsRx, RsTx, O, we); // Instance of uart
+    uart uart_instance(clk, RsRx, RsTx, O, we, tx_start, tx_data); // Instance of uart
     
     wire sharp_we;
     singlePulser( .d(sharp_we) , .pushed(we), .clk(clk));

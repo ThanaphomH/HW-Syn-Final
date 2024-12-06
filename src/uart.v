@@ -24,11 +24,12 @@ module uart(
     input RsRx,
     output RsTx,
     output reg [7:0]  data_2 ,
-    output reg we
+    output reg we,
+    input tx_start,        // New input signal to start transmission
+    input [7:0] tx_data    // New input signal for data to transmit
     );
     
-    reg en, last_rec;
-    reg [7:0] data_in;
+    reg last_rec;
     wire [7:0] data_out;
     wire sent, received, baud;
     
@@ -37,19 +38,17 @@ module uart(
     uart_tx transmitter(baud, data_in, en, sent, RsTx);
     
     always @(posedge baud) begin
-        if (en) 
-            en = 0;
-    
         if (~last_rec & received) begin
-            data_in = data_out;
             data_2 = data_out;
             we = 1;
-            
-            if (data_in <= 8'h7A && data_in >= 8'h21) begin
-                en = 1;
-            end 
         end else begin
             we = 0;
+        end
+
+        // Transmission logic
+        if (tx_start) begin
+            data_in = tx_data;
+            en = 1;
         end
     
         last_rec = received;

@@ -13,9 +13,12 @@ module sender (
     input PS2Clk // USB
 );
 
+    reg en_send;
+    reg [7:0] send_data;
+
     wire [7:0] O;
     wire we;
-    uart uart_instance(clk, RsRx, RsTx, O, we); // Instance of uart
+    uart uart_instance(clk, RsRx, RsTx, O, we, en_send, send_data); // Instance of uart
     
     // USB
     wire [7:0] keycode;
@@ -40,7 +43,12 @@ module sender (
     wire sp_btnU;
     singlePulser pulser( .d(sp_btnU),.pushed(btnU),.clk(clk));
     always @(posedge clk) begin
-        if (sp_btnU) input_switchs <= sw;
+        if (en_send) begin 
+            en_send = 0;
+        end else if (sp_btnU) begin
+            send_data = sw;
+            en_send = 1;
+        end
     end
 
     reg [17:0] clk_counter = 0;
