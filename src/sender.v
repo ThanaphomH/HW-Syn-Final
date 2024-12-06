@@ -25,10 +25,11 @@ module sender (
     wire flag;
     ps2_keyboard uut (
         .clk(clk),
+        .reset_n(1),
         .ps2_clk(PS2Clk),
         .ps2_data(PS2Data),
-        .keycode(keycode),
-        .key_valid(flag)
+        .scancode(keycode),
+        .new_code(flag)
     );
     
     reg [7:0] input_switchs;
@@ -44,10 +45,10 @@ module sender (
     singlePulser pulser( .d(sp_btnU),.pushed(btnU),.clk(clk));
     always @(posedge clk) begin
         if (en_send) begin 
-            en_send = 0;
+            en_send <= 0;
         end else if (sp_btnU) begin
-            send_data = sw;
-            en_send = 1;
+            send_data <= sw;
+            en_send <= 1;
         end
     end
 
