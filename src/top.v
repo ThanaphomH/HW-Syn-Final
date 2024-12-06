@@ -70,8 +70,11 @@ module top(
     wire sharp_we;
     singlePulser( .d(sharp_we) , .pushed(we), .clk(clk));
     
+    wire delay_we;
+    delay_one_cycle delay(.clk(clk), .original_signal(sharp_we), .delayed_signal(delay_we));
+    
     always @(posedge clk) begin
-        if (sharp_we) begin
+        if (delay_we) begin
             if (wx == 5'b11111) begin 
                 wx = 0;
                 if (wy == 2'b11) begin 
