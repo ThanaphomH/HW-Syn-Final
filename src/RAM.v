@@ -18,30 +18,15 @@ module DualPortRAM #(
 
     // Memory declaration: 2D array
     reg [DATA_WIDTH-1:0] mem [0:ROWS-1][0:COLS-1];
-    reg resetting;
-
-    reg [$clog2(ROWS)-1:0] reset_row;
-    reg [$clog2(COLS)-1:0] reset_col;
 
     always @(posedge clk) begin
-        // Reset all memory slot at once will result in black monitor, 
-        // attempt to reset one memory cell per clock instead
-        if(resetting) begin
-            mem[reset_row][reset_col] <= 8'b00000000;
-
-            // move reset cursor to cover all memory slot
-            if (reset_row == ROWS-1 && reset_col == COLS-1) begin
-                resetting = 0;
-            end else if (reset_col == 2'b11) begin
-                reset_col = 0;
-                reset_row = reset_row + 1;
-            end else begin
-                reset_col = reset_col + 1;
+        if (reset) begin
+            integer i, j;
+            for (i = 0; i < ROWS; i = i + 1) begin
+                for (j = 0; j < COLS; j = j + 1) begin
+                    mem[i][j] <= {DATA_WIDTH{1'b0}}; 
+                end
             end
-        end else if (reset) begin
-            reset_row = 0;
-            reset_col = 0;
-            resetting = 1;
         end else if (we && din != 8'b00001101 && din != 8'b00001010) begin
             mem[w_row][w_col] <= din;   // Write data to specified address
         end
