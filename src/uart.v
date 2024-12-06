@@ -34,7 +34,7 @@ module uart(
     wire [7:0] data;
     wire baud;
     wire sent;
-    assign data = (dte) ? data_transmit : data_received;
+    assign data = data_transmit;
     baudrate_gen baudrate_gen(clk, baud);
     uart_rx receiver(baud, rx, received, data_received);
     uart_tx transmitter(baud, data, en, sent, tx);

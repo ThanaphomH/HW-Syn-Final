@@ -9,8 +9,8 @@ module sender (
     output [3:0] an,
     input wire RsRx, //uart // [7:4] for Higher num hex, [3:0] for Lower num
     output wire RsTx, //uart
-    input PS2Data, // USB
-    input PS2Clk // USB
+    input PS2Clk, // USB
+    input PS2Data // USB
 );
     reg en_send;
     reg [7:0] send_data;
@@ -36,8 +36,8 @@ module sender (
     assign an = {an3, an2, an1, an0};
     assign num3 = keycode[7:4];
     assign num2 = keycode[3:0];
-    assign num1 = input_switchs[7:4];
-    assign num0 = input_switchs[3:0];
+    assign num1 = send_data[7:4];
+    assign num0 = send_data[3:0];
     
     wire sp_btnU;
     singlePulser pulser( .d(sp_btnU),.pushed(btnU),.clk(clk));
