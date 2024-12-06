@@ -49,8 +49,8 @@ module top(
     wire [7:0] O;
     
     wire we;
-    reg [4:0] wx;
-    reg [1:0] wy;
+    reg [4:0] wx = 5'b11000;
+    reg [1:0] wy = 2'b01;
     wire [4:0] rx;
     wire [1:0] ry;
     wire [7:0] rdata;
@@ -77,13 +77,13 @@ module top(
         if (delay_we) begin
             if (wx == 5'b11111) begin 
                 wx = 0;
+            end else if (wx = 5'b10111) begin
+                wx = 5'b11000; 
                 if (wy == 2'b11) begin 
                     wy = 0;
                 end else begin
                     wy = wy + 1; 
                 end
-            end else begin
-                wx = wx + 1; 
             end
         end
     end
