@@ -87,17 +87,17 @@ module top(
                 // Normal cursor shift: use some simple black magic to make it correctly align
                 if (wx == 5'b11111) begin 
                     wx = 0;
-                end else if (wx = 5'b10111) begin
+                end else if (wx == 5'b10111) begin
                     wx = 5'b11000; 
                     if (wy == 2'b11) begin 
                         wy = 0;
                     end else begin
                         wy = wy + 1; 
                     end
+                end else begin
+                    wx = wx + 1;                
                 end
-            end else begin
-                wx = wx + 1;            
-            end
+            end 
         end
     end
 
