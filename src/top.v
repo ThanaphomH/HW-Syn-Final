@@ -53,7 +53,7 @@ module top(
     reg [1:0] wy;
     wire [4:0] rx;
     wire [1:0] ry;
-    wire [7:0]rdata;
+    wire [7:0] rdata;
     
     assign rx = w_x[7:3];
     assign ry = w_y[5:4];
@@ -89,7 +89,7 @@ module top(
     end
 
     wire [7:0] sa, si;
-    DualPortRAM ram(clk, we, wy, wx, O, ry, rx, rdata, sa, si);
+    DualPortRAM ram(clk, sharp_we, wy, wx, O, ry, rx, rdata, sa, si);
 
     // rgb buffer
     always @(posedge clk)
