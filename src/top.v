@@ -75,8 +75,6 @@ module top(
     // delay_one_cycle delay(.clk(clk), .original_signal(sharp_we), .delayed_signal(delay_we));
     
     always @(posedge clk) begin
-        if (delay_we) delay_we = 0;
-
         if (we) begin
             // case newline
             if (O == 8'b01000100) begin 
@@ -97,6 +95,9 @@ module top(
         end
 
         if (delay_we) begin 
+            // single pulse
+            delay_we = 0;
+
             // move cursor and use position shifting magic to make it correctly align
             if (wx == 5'b11111) begin 
                 wx = 0;
