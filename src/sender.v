@@ -10,7 +10,8 @@ module sender (
     input wire RsRx, //uart // [7:4] for Higher num hex, [3:0] for Lower num
     output wire RsTx, //uart
     input PS2Clk, // USB
-    input PS2Data // USB
+    input PS2Data, // USB
+    output [7:0] led 
 );
     reg en_send;
     reg [7:0] send_data;
@@ -22,14 +23,21 @@ module sender (
     // USB
     wire [7:0] keycode;
     wire flag;
-    ps2_keyboard uut (
+    ps2 uut (
         .clk(clk),
-        .reset_n(1),
         .ps2_clk(PS2Clk),
         .ps2_data(PS2Data),
         .scancode(keycode),
         .new_code(flag)
     );
+    
+    reg [7:0] last_code;
+    always @(posedge clk) begin
+        if (keycode)
+            last_code <= keycode;
+    end
+
+    assign led = last_code;
     
     reg [7:0] input_switchs;
     wire [3:0] num3, num2, num1, num0; // left to right
