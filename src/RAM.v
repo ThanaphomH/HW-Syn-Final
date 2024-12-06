@@ -20,7 +20,7 @@ module DualPortRAM #(
 
     // Write operation
     always @(posedge clk) begin
-        if (we && O != 8'b01000100) begin
+        if (we && O != 8'b00001101 && O != 8'b00001010) begin
             mem[w_row][w_col] <= din;   // Write data to specified address
         end
     end

@@ -76,7 +76,7 @@ module top(
     always @(posedge clk) begin
         if (delay_we) begin
             // Newline: Shift y and move to the first column of next line
-            if (O == 8'b01000100) begin
+            if (O == 8'b00001101 || O == 8'b00001010) begin
                 wx = 5'b11000
                 if (wy == 2'b11) begin 
                     wy = 0;
