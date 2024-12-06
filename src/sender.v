@@ -12,13 +12,12 @@ module sender (
     input PS2Data, // USB
     input PS2Clk // USB
 );
-
     reg en_send;
     reg [7:0] send_data;
 
     wire [7:0] O;
     wire we;
-    uart uart_instance(clk, RsRx, RsTx, O, we, en_send, send_data); // Instance of uart
+    uart uart_instance(clk, RsRx, send_data, en_send, RsTx, O, we); // Instance of uart
     
     // USB
     wire [7:0] keycode;
