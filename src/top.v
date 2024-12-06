@@ -77,12 +77,12 @@ module top(
     always @(posedge clk) begin
         if (we) begin
             // case newline
-            if (O == 8'b01000100) begin 
+            if (O == 8'b01000100) begin
                 // does not need to write to ram, just move cursor
                 delay_we = 0;
 
                 // move cursor to the first column of next line
-                wx = 5'b1000100;
+                wx = 5'b11000;
                 if (wy == 2'b11) begin 
                     wy = 0;
                 end else begin
@@ -93,7 +93,9 @@ module top(
                 delay_we = 1;
             end
         end
-
+    end
+    
+    always @(posedge clk) begin
         if (delay_we) begin 
             // single pulse
             delay_we = 0;

@@ -37,7 +37,7 @@ module ascii_test(
     assign ascii_bit_on = ((x >= 192 && x < 448) && (y >= 208 && y < 272)) ? ascii_bit : 1'b0;
     
     // rgb rainbow
-    wire letter_color;
+    wire [11:0] letter_color;
     rainbow_rom rainbow(.clk(clk), .addr(x[7:3]), .data(letter_color)); 
     
     
@@ -49,11 +49,11 @@ module ascii_test(
             if(ascii_bit_on)
                 rgb = letter_color;  // blue letters
             else
-                if (448 <= y && y <= 440) 
+                if (440 <= y && y <= 448) 
                     rgb = 12'hF00;
-                else if (464 <= y && y <= 456)
+                else if (456 <= y && y <= 465)
                     rgb = 12'h00F;
-                else if (480 <= y && y <= 472)
+                else if (472 <= y && y <= 480)
                     rgb = 12'hF00;
                 else rgb = 12'hFFF;  // white background
    
