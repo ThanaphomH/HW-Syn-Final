@@ -96,6 +96,16 @@ module hexTo7Segment(
           8'h2E : segments = 7'b1101111;   // .
           8'h2F : segments = 7'b0101101;  // /
           8'hB0 : segments = 7'b0011100;   //?
+          
+          8'h01 : segments = 7'b1111001;  // 1
+          8'h02 : segments = 7'b0100100;  // 2
+          8'h03  : segments = 7'b0110000; // 3
+          8'h04 : segments = 7'b0011001;   // 4
+          8'h05 : segments =  7'b0010010;   // 5
+          8'h06 : segments = 7'b0000010;   // 6
+          8'h07 : segments = 7'b1111000;   // 7
+          8'h08 : segments =  7'b0000000;   // 8
+          8'h09 : segments = 7'b0010000;   // 9
           default : segments = 7'b1000000;   // 0
       endcase
 				

@@ -18,16 +18,28 @@ module top(
     assign an = {an3, an2, an1, an0};
     
     // Divide clock
-    wire targetClk;
-    wire [18:0] tclk;
+//    wire targetClk;
+//    wire [18:0] tclk;
 
-    assign tclk[0] = clk;
-    genvar c;
-    generate for(c = 0; c < 18; c = c + 1) begin
-        clockDiv fDiv(tclk[c+1], tclk[c]);
-    end endgenerate
+//    assign tclk[0] = clk;
+//    genvar c;
+//    generate for(c = 0; c < 18; c = c + 1) begin
+//        clockDiv fDiv(tclk[c+1], tclk[c]);
+//    end endgenerate
     
-    clockDiv fdivTarget(targetClk, tclk[18]);
+//    clockDiv fdivTarget(targetClk, tclk[18]);
+    reg [17:0] clk_counter = 0;
+    reg target_enable = 0;
+    
+    always @(posedge clk) begin
+        if (clk_counter == 18'h3FFFF) begin // Adjust this for your desired frequency
+            clk_counter <= 0;
+            target_enable <= 1;
+        end else begin
+            clk_counter <= clk_counter + 1;
+            target_enable <= 0;
+        end
+    end
     
     // signals
     wire [9:0] w_x, w_y;
@@ -73,7 +85,8 @@ module top(
         end
     end
 
-    DualPortRAM ram(clk, we, wy, wx, O, ry, rx, rdata);
+    wire [7:0] sa, si;
+    DualPortRAM ram(clk, we, wy, wx, O, ry, rx, rdata, sa, si);
 
     // rgb buffer
     always @(posedge clk)
@@ -84,6 +97,6 @@ module top(
     assign rgb = rgb_reg;
     
     // 7seg board
-//    quadSevenSeg q7seg(seg, dp, an0, an1, an2, an3,O, O,{0,0,0,0,0,0,0,we}, rdata, targetClk);
+    quadSevenSeg q7seg(seg, dp, an0, an1, an2, an3,sa[7:4], sa[3:0], si[7:4], si[3:0], target_enable);
       
 endmodule
