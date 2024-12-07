@@ -127,11 +127,11 @@ set_property PACKAGE_PIN B18 [get_ports RsRx]
 set_property PACKAGE_PIN A18 [get_ports RsTx]						
 	set_property IOSTANDARD LVCMOS33 [get_ports RsTx]
 # UART J1
-set_property PACKAGE_PIN J1 [get_ports tx]
-	set_property IOSTANDARD LVCMOS33 [get_ports tx]
+set_property PACKAGE_PIN G3 [get_ports Tx]
+	set_property IOSTANDARD LVCMOS33 [get_ports Tx]
 # UART L2
-set_property PACKAGE_PIN A15 [get_ports rx]
-	set_property IOSTANDARD LVCMOS33 [get_ports rx]
+set_property PACKAGE_PIN C16 [get_ports Rx]
+	set_property IOSTANDARD LVCMOS33 [get_ports Rx]
 	
 ###USB HID (PS/2)
 set_property PACKAGE_PIN C17 [get_ports PS2Clk]

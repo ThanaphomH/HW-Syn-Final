@@ -9,7 +9,7 @@ module sender (
     output [3:0] an,
     input wire RsRx, //uart // [7:4] for Higher num hex, [3:0] for Lower num
     output wire RsTx, //uart
-    output wire tx,
+    output wire Tx,
     input PS2Clk, // PS2
     input PS2Data, // PS2
     output [7:0] led 

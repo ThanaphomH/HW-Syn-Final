@@ -9,7 +9,7 @@ module top(
     output [11:0] rgb,   // to DAC, to VGA connector
     input wire RsRx, //uart // [7:4] for Higher num hex, [3:0] for Lower num
     output wire RsTx, //uart
-    input wire rx,
+    input wire Rx,
     output [6:0] seg,
     output dp,
     output [3:0] an
@@ -71,7 +71,7 @@ module top(
     // Text Generation Circuit
     ascii_test at(.clk(clk), .video_on(w_video_on), .x(w_x), .y(w_y), .rgb(rgb_next), .ascii_code(rdata[6:0]));
     
-    reg tx_busy;
+    wire tx_busy;
     uart uart_instance(clk, 0, tx_data, 0, tx_busy, RsTx, RsRx,  O, we); // Instance of uart
     
     wire sharp_we;
