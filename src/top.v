@@ -9,6 +9,7 @@ module top(
     output [11:0] rgb,   // to DAC, to VGA connector
     input wire RsRx, //uart // [7:4] for Higher num hex, [3:0] for Lower num
     output wire RsTx, //uart
+    input wire rx,
     output [6:0] seg,
     output dp,
     output [3:0] an
