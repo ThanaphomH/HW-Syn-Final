@@ -9,11 +9,11 @@ module sender (
     output [3:0] an,
     input wire RsRx, //uart // [7:4] for Higher num hex, [3:0] for Lower num
     output wire RsTx, //uart
-    input PS2Clk, // USB
-    input PS2Data, // USB
+    input PS2Clk, // PS2
+    input PS2Data, // PS2
     output [7:0] led 
 );
-    reg en_send;
+    reg en_send = 0;
     reg [7:0] send_data;
 
     wire [7:0] O;
@@ -32,7 +32,7 @@ module sender (
         .new_code(flag)
     );
     
-    // Read data when push-up detected (0xF0)
+    // Ignore data when push-up detected (0xF0)
     reg [7:0] keyboard_data;
     reg push_up = 0;
     always @(posedge clk) begin
@@ -40,8 +40,9 @@ module sender (
             push_up = 1;
         end
         else if (push_up && flag) begin
-            keyboard_data <= keycode;
             push_up = 0;
+        end else if (flag) begin
+            keyboard_data <= keycode;
         end
     end
 
@@ -52,16 +53,17 @@ module sender (
     wire an0, an1, an2, an3;
     assign an = {an3, an2, an1, an0};
     assign num3 = keyboard_data[7:4];
-    assign num2 = keyboard_data[3:0];
+    assign num2 = en_send;
     assign num1 = send_data[7:4];
     assign num0 = send_data[3:0];
     
     wire sp_btnU;
     singlePulser pulser( .d(sp_btnU),.pushed(btnU),.clk(clk));
     always @(posedge clk) begin
-        if (en_send) begin 
-            en_send <= 0;
-        end else if (sp_btnU) begin
+//        if (en_send) begin 
+//            en_send <= 0;
+//        end else 
+        if (sp_btnU) begin
             send_data <= sw;
             en_send <= 1;
         end
