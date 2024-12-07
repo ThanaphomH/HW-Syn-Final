@@ -9,6 +9,7 @@ module sender (
     output [3:0] an,
     input wire RsRx, //uart // [7:4] for Higher num hex, [3:0] for Lower num
     output wire RsTx, //uart
+    output wire tx,
     input PS2Clk, // PS2
     input PS2Data, // PS2
     output [7:0] led 
@@ -60,10 +61,9 @@ module sender (
     wire sp_btnU;
     singlePulser pulser( .d(sp_btnU),.pushed(btnU),.clk(clk));
     always @(posedge clk) begin
-//        if (en_send) begin 
-//            en_send <= 0;
-//        end else 
-        if (sp_btnU) begin
+        if (en_send) begin 
+            en_send <= 0;
+        end else if (sp_btnU) begin
             send_data <= sw;
             en_send <= 1;
         end
