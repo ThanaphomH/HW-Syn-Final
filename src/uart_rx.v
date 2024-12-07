@@ -1,58 +1,86 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 10/31/2021 10:15:58 PM
-// Design Name: 
-// Module Name: uart_rx
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
+module uart_rx #(
+    parameter integer DIVISOR = 10417
+)(
+    input  wire       clk,
+    input  wire       rst,
+    input  wire       rx_serial_in,
+    output reg [7:0]  rx_data,
+    output reg        rx_ready
+);
+    localparam IDLE = 0, START = 1, DATA = 2, STOP = 3;
 
-`timescale 1ns / 1ps
+    reg [1:0]   state = IDLE;
+    reg [7:0]   data_reg;
+    reg [2:0]   bit_index;
+    reg [15:0]  baud_cnt;
+    reg         sample_point;
 
-module uart_rx(
-    input clk,
-    input bit_in,
-    output reg received,
-    output reg [7:0] data_out
-    );
-    
-    reg last_bit;
-    reg receiving = 0;
-    reg [7:0] count;
-    
-    always@(posedge clk) begin
-        if (~receiving & last_bit & ~bit_in) begin
-            receiving <= 1;
-            received <= 0;
-            count <= 0;
+    always @(posedge clk or posedge rst) begin
+        if(rst) begin
+            state      <= IDLE;
+            rx_data    <= 0;
+            rx_ready   <= 0;
+            data_reg   <= 0;
+            bit_index  <= 0;
+            baud_cnt   <= 0;
+        end else begin
+            rx_ready <= 0; // default
+
+            case(state)
+                IDLE: begin
+                    if(rx_serial_in == 1'b0) begin
+                        // Detect start bit
+                        state     <= START;
+                        baud_cnt  <= 0;
+                    end
+                end
+
+                START: begin
+                    if(baud_cnt == (DIVISOR/2)) begin
+                        // Sample in the middle of start bit
+                        if(rx_serial_in == 1'b0) begin
+                            // Valid start bit
+                            baud_cnt  <= 0;
+                            bit_index <= 0;
+                            data_reg  <= 0;
+                            state     <= DATA;
+                        end else begin
+                            // False start
+                            state <= IDLE;
+                        end
+                    end else begin
+                        baud_cnt <= baud_cnt + 1;
+                    end
+                end
+
+                DATA: begin
+                    if(baud_cnt == DIVISOR-1) begin
+                        baud_cnt <= 0;
+                        data_reg[bit_index] <= rx_serial_in;
+                        bit_index <= bit_index + 1;
+                        if(bit_index == 7)
+                            state <= STOP;
+                    end else begin
+                        baud_cnt <= baud_cnt + 1;
+                    end
+                end
+
+                STOP: begin
+                    if(baud_cnt == DIVISOR-1) begin
+                        baud_cnt <= 0;
+                        // Check stop bit
+                        if(rx_serial_in == 1'b1) begin
+                            rx_data  <= data_reg;
+                            rx_ready <= 1'b1;
+                        end
+                        state <= IDLE;
+                    end else begin
+                        baud_cnt <= baud_cnt + 1;
+                    end
+                end
+
+            endcase
         end
-
-        last_bit <= bit_in;
-        count <= (receiving) ? count+1 : 0;
-        
-        // Receive every 16 ticks
-        case (count)
-            8'd24:  data_out[0] <= bit_in;
-            8'd40:  data_out[1] <= bit_in;
-            8'd56:  data_out[2] <= bit_in;
-            8'd72:  data_out[3] <= bit_in;
-            8'd88:  data_out[4] <= bit_in;
-            8'd104: data_out[5] <= bit_in;
-            8'd120: data_out[6] <= bit_in;
-            8'd136: data_out[7] <= bit_in;
-            8'd152: begin received <= 1; receiving <= 0; end
-        endcase
     end
+
 endmodule

@@ -18,7 +18,8 @@ module sender (
 
     wire [7:0] O;
     wire we;
-    uart uart_instance(clk, RsRx, send_data, en_send, RsTx, O, we); // Instance of uart
+    wire tx_busy;
+    uart uart_instance(clk, 0, send_data, en_send, tx_busy, RsTx, RsRx, O, we); // Instance of uart
     
     // USB
     wire [7:0] keycode;
