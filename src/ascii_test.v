@@ -36,6 +36,11 @@ module ascii_test(
     // "on" region in center of screen
     assign ascii_bit_on = ((x >= 192 && x < 448) && (y >= 208 && y < 272)) ? ascii_bit : 1'b0;
     
+    
+    // graphic
+    wire [11:0] char_color;
+    rainbow_rom rb(clk, x[9:3], char_color);
+    
     // rgb multiplexing circuit
     always @*
         if(~video_on)
@@ -46,6 +51,8 @@ module ascii_test(
             else
                 if (y >= 472) 
                     rgb = 12'h0F0;
+                else if ((x >= 176 && x < 464 && y >= 192 && y < 288) && !(x >= 184 && x < 456 && y >= 200 && y < 280))
+                    rgb = 12'h000;
                 else rgb = 12'hFFF;  // white background
    
 endmodule

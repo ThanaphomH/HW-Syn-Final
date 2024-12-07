@@ -9,7 +9,6 @@ module top(
     output [11:0] rgb,   // to DAC, to VGA connector
     input wire RsRx, //uart // [7:4] for Higher num hex, [3:0] for Lower num
     output wire RsTx, //uart
-    input wire Rx,
     output [6:0] seg,
     output dp,
     output [3:0] an
@@ -116,8 +115,7 @@ module top(
         end
     end
 
-    wire [7:0] sa, si;
-    DualPortRAM ram(clk, sharp_we, sharp_reset, wy, wx, O, ry, rx, rdata, sa, si);
+    DualPortRAM ram(clk, sharp_we, sharp_reset, wy, wx, O, ry, rx, rdata);
 
     // rgb buffer
     always @(posedge clk)
@@ -128,6 +126,6 @@ module top(
     assign rgb = rgb_reg;
     
     // 7seg board
-    quadSevenSeg q7seg(seg, dp, an0, an1, an2, an3,wx[3:0], {0,0, wy[1:0]}, rx[3:0], {0,0, ry[1:0]}, target_enable);
+    quadSevenSeg q7seg(seg, dp, an0, an1, an2, an3,wx[3:0], {0,0, wy[1:0]}, O[7:4], O[3:0], target_enable);
       
 endmodule
