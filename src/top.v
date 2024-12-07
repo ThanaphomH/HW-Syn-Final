@@ -70,7 +70,8 @@ module top(
     // Text Generation Circuit
     ascii_test at(.clk(clk), .video_on(w_video_on), .x(w_x), .y(w_y), .rgb(rgb_next), .ascii_code(rdata[6:0]));
     
-    uart uart_instance(clk, RsRx, 0, 0, RsTx, O, we); // Instance of uart
+    reg tx_busy;
+    uart uart_instance(clk, 0, tx_data, 0, tx_busy, RsTx, RsRx,  O, we); // Instance of uart
     
     wire sharp_we;
     singlePulser( .d(sharp_we) , .pushed(we), .clk(clk));
