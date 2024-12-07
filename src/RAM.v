@@ -11,9 +11,7 @@ module DualPortRAM #(
     input wire [DATA_WIDTH-1:0] din,     // Data input for the write port
     input wire [$clog2(ROWS)-1:0] r_row, // Row address for the read port
     input wire [$clog2(COLS)-1:0] r_col, // Column address for the read port
-    output reg [DATA_WIDTH-1:0] dout,     // Data output for the read port
-    output reg [DATA_WIDTH-1:0] tdout1,   // Data output for the read port
-    output reg [DATA_WIDTH-1:0] tdout2
+    output reg [DATA_WIDTH-1:0] dout     // Data output for the read port
 );
 
     // Memory declaration: 2D array
@@ -35,8 +33,6 @@ module DualPortRAM #(
     // Read operation
     always @(posedge clk) begin
         dout <= mem[r_row][r_col];      // Read data from specified address
-        tdout1 <= mem[0][0];      // Read data from specified address
-        tdout2 <= mem[0][1];      // Read data from specified address
     end
 
 endmodule
