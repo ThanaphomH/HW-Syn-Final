@@ -21,7 +21,7 @@ module sender (
     wire tx_busy;
     uart uart_instance(clk, 0, send_data, en_send, tx_busy, RsTx, RsRx, O, we); // Instance of uart
     
-    // USB
+    // PS2 Keyboard
     wire [7:0] keycode;
     wire flag;
     ps2 uut (
@@ -32,20 +32,27 @@ module sender (
         .new_code(flag)
     );
     
-    reg [7:0] last_code;
+    // Read data when push-up detected (0xF0)
+    reg [7:0] keyboard_data;
+    reg push_up = 0;
     always @(posedge clk) begin
-        if (keycode)
-            last_code <= keycode;
+        if (flag && keycode == 8'hF0) begin
+            push_up = 1;
+        end
+        else if (push_up && flag) begin
+            keyboard_data <= keycode;
+            push_up = 0;
+        end
     end
 
-    assign led = last_code;
+    assign led = keyboard_data;
     
     reg [7:0] input_switchs;
     wire [3:0] num3, num2, num1, num0; // left to right
     wire an0, an1, an2, an3;
     assign an = {an3, an2, an1, an0};
-    assign num3 = keycode[7:4];
-    assign num2 = keycode[3:0];
+    assign num3 = keyboard_data[7:4];
+    assign num2 = keyboard_data[3:0];
     assign num1 = send_data[7:4];
     assign num0 = send_data[3:0];
     
