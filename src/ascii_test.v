@@ -16,7 +16,7 @@ module ascii_test(
     
     // small index 10*10 with small 16*8
     // signal declarations
-    wire [11:0] rom_addr;           // 11-bit text ROM address
+    wire [10:0] rom_addr;           // 11-bit text ROM address
 //    wire [6:0] ascii_char;          // 7-bit ASCII character code
     wire [3:0] char_row;            // 4-bit row of ASCII character
     wire [2:0] bit_addr;            // column number of ROM data
@@ -27,13 +27,11 @@ module ascii_test(
     ascii_rom rom(.clk(clk), .addr(rom_addr), .data(rom_data));
     thai_rom rom(.clk(clk), .addr(rom_addr), .data(thai_data));
 
-    wire [6:0] rom_addr;
-    assign rom_addr = ascii_code[6:0];
     wire lang;
     assign lang = ascii_code[7];
 
     // ASCII ROM interface
-    assign rom_addr = {ascii_code, char_row};   // ROM address is ascii code + row
+    assign rom_addr = {ascii_code[6:0], char_row};   // ROM address is ascii code + row
     assign ascii_bit = rom_data[~bit_addr];     // reverse bit order
     assign thai_bit = thai_data[~bit_addr];     // reverse bit order
 
