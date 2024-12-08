@@ -68,15 +68,15 @@ module ascii_test(
                     else rgb = 12'h000;
                 else 
                     // Thai flag top
-                    if (y <= 8) 
+                    if (y <= 24) 
                         rgb = 12'hF00; // Red
-                    else if (y <= 12) 
-                        rgb = 12'hFFF; // White
-                    else if (y <= 16) 
-                        rgb = 12'h00F; // Blue
-                    else if (y <= 24) 
+                    else if (y <= 28) 
                         rgb = 12'hFFF; // White
                     else if (y <= 32) 
+                        rgb = 12'h00F; // Blue
+                    else if (y <= 36) 
+                        rgb = 12'hFFF; // White
+                    else if (y <= 40) 
                         rgb = 12'hF00; // Red
                 
                     // Thai flag bottom
