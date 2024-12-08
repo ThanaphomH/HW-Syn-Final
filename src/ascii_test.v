@@ -53,8 +53,8 @@ module ascii_test(
         else
             if(ascii_bit_on)             // set letters color
                 if (column_index < 28) rgb = 12'hF00;    // start from col 24
-                else if (column_index < 32) rgb = 12'hF81;
-                else if (column_index < 36) rgb = 12'hFF1;
+                else if (column_index < 32) rgb = 12'h881;
+                else if (column_index < 36) rgb = 12'h8F1;
                 else if (column_index < 40) rgb = 12'h0F0;
                 else if (column_index < 44) rgb = 12'h00F;
                 else if (column_index < 48) rgb = 12'h408;
