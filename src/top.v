@@ -68,7 +68,7 @@ module top(
                        .video_on(w_video_on), .p_tick(w_p_tick), .x(w_x), .y(w_y));
                        
     // Text Generation Circuit
-    ascii_test at(.clk(clk), .video_on(w_video_on), .x(w_x), .y(w_y), .rgb(rgb_next), .ascii_code(rdata[6:0]));
+    ascii_test at(.clk(clk), .video_on(w_video_on), .x(w_x), .y(w_y), .rgb(rgb_next), .ascii_code(rdata[7:0]));
     
     wire tx_busy;
     uart uart_instance(clk, 0, tx_data, 0, tx_busy, RsTx, RsRx,  O, we); // Instance of uart
