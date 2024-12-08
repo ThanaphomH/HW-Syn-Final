@@ -68,7 +68,8 @@ module sender (
         .push_up(ignore_next),
         .push_down(keyboard_ready),
         .ascii(keyboard_ascii),
-        .led(led[11:8])
+        .led(led[11:8]),
+        .change_lang(lang)
     );
     
     reg [7:0] input_switchs;
@@ -89,7 +90,7 @@ module sender (
             send_data <= sw;
             en_send <= 1;
         end else if (delay2_keyboard_ready) begin
-            send_data <= keyboard_ascii;
+            send_data <= { lang, keyboard_ascii[6:0]};
             en_send <= 1;
         end
     end

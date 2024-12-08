@@ -21,7 +21,7 @@
 
 module thai_rom(
         input clk, 
-        input wire [11:0] addr,
+        input wire [10:0] addr,
         output reg [7:0] data
     );
 

@@ -20,21 +20,28 @@ module ascii_test(
 //    wire [6:0] ascii_char;          // 7-bit ASCII character code
     wire [3:0] char_row;            // 4-bit row of ASCII character
     wire [2:0] bit_addr;            // column number of ROM data
-    wire [7:0] rom_data;            // 8-bit row data from text ROM
+    wire [7:0] rom_data, thai_data;            // 8-bit row data from text ROM
     wire ascii_bit, ascii_bit_on;     // ROM bit and status signal
     
     // instantiate ASCII ROM
     ascii_rom rom(.clk(clk), .addr(rom_addr), .data(rom_data));
+    thai_rom rom(.clk(clk), .addr(rom_addr), .data(thai_data));
+
+    wire [6:0] rom_addr;
+    assign rom_addr = ascii_code[6:0];
+    wire lang;
+    assign lang = ascii_code[7];
 
     // ASCII ROM interface
     assign rom_addr = {ascii_code, char_row};   // ROM address is ascii code + row
     assign ascii_bit = rom_data[~bit_addr];     // reverse bit order
+    assign thai_bit = thai_data[~bit_addr];     // reverse bit order
 
 //    assign ascii_char = {y[5:4], x[7:3]};   // 7-bit ascii code shift y 16 bit, shift x 8 bit
     assign char_row = y[3:0];               // row number of ascii character rom
     assign bit_addr = x[2:0];               // column number of ascii character rom
     // "on" region in center of screen
-    assign ascii_bit_on = ((x >= 192 && x < 448) && (y >= 208 && y < 272)) ? ascii_bit : 1'b0;
+    assign ascii_bit_on = ((x >= 192 && x < 448) && (y >= 208 && y < 272)) ? (lang ? thai_bit : ascii_bit) : 1'b0;
     
     
     // graphic

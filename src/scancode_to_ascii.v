@@ -6,9 +6,12 @@ module scancode_to_ascii(
     input push_up,
     input push_down,
     output [7:0] ascii,
-    output reg [3:0] led
+    output reg [3:0] led,
+    output reg change_lang
 );
-    reg change_lang = 0;
+    initial begin
+        change_lang = 0;
+    end 
     wire shifting;
     reg holding_shift = 0;
     reg caplock = 0;
