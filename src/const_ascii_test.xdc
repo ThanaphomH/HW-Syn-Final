@@ -130,16 +130,16 @@ set_property PACKAGE_PIN U3 [get_ports {led[11]}]
 	set_property IOSTANDARD LVCMOS33 [get_ports {led[11]}]
 	
 ##USB-RS232 Interface
-set_property PACKAGE_PIN B18 [get_ports RsRx]						
-	set_property IOSTANDARD LVCMOS33 [get_ports RsRx]
-set_property PACKAGE_PIN A18 [get_ports RsTx]						
-	set_property IOSTANDARD LVCMOS33 [get_ports RsTx]
-# UART Tx
-#set_property PACKAGE_PIN G3 [get_ports RsTx]
-#	set_property IOSTANDARD LVCMOS33 [get_ports RsTx]
-## UART Rx
-#set_property PACKAGE_PIN H2 [get_ports RsRx]
+#set_property PACKAGE_PIN B18 [get_ports RsRx]						
 #	set_property IOSTANDARD LVCMOS33 [get_ports RsRx]
+#set_property PACKAGE_PIN A18 [get_ports RsTx]						
+#	set_property IOSTANDARD LVCMOS33 [get_ports RsTx]
+# UART Tx
+set_property PACKAGE_PIN G3 [get_ports RsTx]
+	set_property IOSTANDARD LVCMOS33 [get_ports RsTx]
+## UART Rx
+set_property PACKAGE_PIN H2 [get_ports RsRx]
+	set_property IOSTANDARD LVCMOS33 [get_ports RsRx]
 	
 ###USB HID (PS/2)
 set_property PACKAGE_PIN C17 [get_ports PS2Clk]

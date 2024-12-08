@@ -126,6 +126,6 @@ module top(
     assign rgb = rgb_reg;
     
     // 7seg board
-    quadSevenSeg q7seg(seg, dp, an0, an1, an2, an3,wx[3:0], {0,0, wy[1:0]}, O[7:4], O[3:0], target_enable);
+    quadSevenSeg q7seg(seg, dp, an0, an1, an2, an3,wx[3:0], {0,0, wy[1:0]}, O[3:0], O[7:4], target_enable);
       
 endmodule

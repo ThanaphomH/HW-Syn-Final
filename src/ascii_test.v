@@ -25,7 +25,7 @@ module ascii_test(
     
     // instantiate ASCII ROM
     ascii_rom rom(.clk(clk), .addr(rom_addr), .data(rom_data));
-    thai_rom rom(.clk(clk), .addr(rom_addr), .data(thai_data));
+    thai_rom trom(.clk(clk), .addr(rom_addr), .data(thai_data));
 
     wire lang;
     assign lang = ascii_code[7];
@@ -43,61 +43,55 @@ module ascii_test(
     
     
     // graphic
-    reg [11:0] char_color;
     wire [6:0] column_index;
     assign column_index = x[9:3];
-    always @(*) begin
-        case (column_index)
-            7'b0011000: char_color = 12'hF00;
-            7'b0011001: char_color = 12'hE10;
-            7'b0011010: char_color = 12'hE30;
-            7'b0011011: char_color = 12'hD41;
-            7'b0011100: char_color = 12'hD51;
-            7'b0011101: char_color = 12'hC72;
-            7'b0011110: char_color = 12'hC82;
-            7'b0011111: char_color = 12'hB93;
-            7'b0100000: char_color = 12'hBA3;
-            7'b0100001: char_color = 12'hAB4;
-            7'b0100010: char_color = 12'hAC4;
-            7'b0100011: char_color = 12'h9D5;
-            7'b0100100: char_color = 12'h9E5;
-            7'b0100101: char_color = 12'h8E6;
-            7'b0100110: char_color = 12'h8E6;
-            7'b0100111: char_color = 12'h7E7;
-            7'b0101000: char_color = 12'h7E7;
-            7'b0101001: char_color = 12'h6E8;
-            7'b0101010: char_color = 12'h6E8;
-            7'b0101011: char_color = 12'h5E9;
-            7'b0101100: char_color = 12'h5D9;
-            7'b0101101: char_color = 12'h4CA;
-            7'b0101110: char_color = 12'h4BA;
-            7'b0101111: char_color = 12'h3AB;
-            7'b0110000: char_color = 12'h39B;
-            7'b0110001: char_color = 12'h28C;
-            7'b0110010: char_color = 12'h27C;
-            7'b0110011: char_color = 12'h15D;
-            7'b0110100: char_color = 12'h14D;
-            7'b0110101: char_color = 12'h03E;
-            7'b0110110: char_color = 12'h01E;
-            7'b0110111: char_color = 12'h00F;
-            
-        default: char_color = 12'h000;
-        endcase
-    end
     
     // rgb multiplexing circuit
     always @(*) begin
         if(~video_on)
             rgb = 12'h000;      // blank
         else
-            if(ascii_bit_on)
-                rgb = char_color;  // letters color
+            if(ascii_bit_on)             // set letters color
+                if (column_index < 28) rgb = 12'hF00;    // start from col 24
+                else if (column_index < 32) rgb = 12'hF81;
+                else if (column_index < 36) rgb = 12'hFF1;
+                else if (column_index < 40) rgb = 12'h0F0;
+                else if (column_index < 44) rgb = 12'h00F;
+                else if (column_index < 48) rgb = 12'h408;
+                else if (column_index < 52) rgb = 12'hF0F;
+                else if (column_index < 56) rgb = 12'hF08;
+                else rgb = 12'h000;
             else
-                if (y >= 472) 
-                    rgb = 12'h0F0;
-                else if ((x >= 180 && x < 460 && y >= 196 && y < 284) && !(x >= 184 && x < 456 && y >= 200 && y < 280))
-                    rgb = 12'h000;
-                else rgb = 12'hFFF;  // white background
+                // Frame
+                if ((x >= 184 && x < 456 && y >= 200 && y < 280))
+                    if (x >= 180 && x < 460 && y >= 196 && y < 284) rgb = 12'hFFF;
+                    else rgb = 12'h000;
+                else 
+                    // Thai flag top
+                    if (y <= 8) 
+                        rgb = 12'hF00; // Red
+                    else if (y <= 12) 
+                        rgb = 12'hFFF; // White
+                    else if (y <= 16) 
+                        rgb = 12'h00F; // Blue
+                    else if (y <= 24) 
+                        rgb = 12'hFFF; // White
+                    else if (y <= 32) 
+                        rgb = 12'hF00; // Red
+                
+                    // Thai flag bottom
+                    else if (y >= 476) 
+                        rgb = 12'hF00; // Red
+                    else if (y >= 472) 
+                        rgb = 12'hFFF; // White
+                    else if (y >= 468) 
+                        rgb = 12'h00F; // Blue
+                    else if (y >= 464) 
+                        rgb = 12'hFFF; // White
+                    else if (y >= 460) 
+                        rgb = 12'hF00; // Red
+                    
+                    else rgb = 12'hFFF;  // white background
      end
    
 endmodule
