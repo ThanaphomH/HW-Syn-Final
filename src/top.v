@@ -20,7 +20,7 @@ module top(
     output [11:0] led 
 );
 
-    reg dummy_tx;
+    wire dummy_tx;
     wire [7:0] receive_data;
     receiver rec (
         .clk(clk),          // 100MHz on Basys 3
@@ -34,7 +34,7 @@ module top(
         .receive_data(receive_data)
     );
     
-    reg dummy_rx;
+    wire dummy_rx;
     wire [7:0] send_data;
     sender send (
         .clk(clk),

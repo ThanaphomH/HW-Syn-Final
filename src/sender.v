@@ -8,7 +8,7 @@ module sender (
     output wire RsTx, //uart
     input PS2Clk, // PS2
     input PS2Data, // PS2
-    output [11:0] led,
+    output reg [11:0] led,
     
     output reg [7:0] send_data
 );
@@ -45,15 +45,14 @@ module sender (
             ignore_next <= 0;
         end else if (flag) begin
             keyboard_scancode <= keycode;
+            led[7:0] <= keyboard_scancode;
             keyboard_ready <= 1;
         end
     end
-
-    assign led[7:0] = keyboard_scancode;
     
     // Scancode to ascii
-//    wire delay1_keyboard_ready;
-//    delay_one_cycle delay(clk, keyboard_ready, delay1_keyboard_ready);
+    wire delay1_keyboard_ready;
+    delay_one_cycle delay(clk, keyboard_ready, delay1_keyboard_ready);
 //    wire delay2_keyboard_ready;
 //    delay_one_cycle delay2(clk, delay1_keyboard_ready, delay2_keyboard_ready);
     wire sp_pushup;
@@ -66,7 +65,6 @@ module sender (
         .push_up(ignore_next),
         .push_down(keyboard_ready),
         .ascii(keyboard_ascii),
-        .led(led[11:8]),
         .change_lang(lang)
     );
     
@@ -78,7 +76,7 @@ module sender (
         end else if (sp_btnU) begin
             send_data <= sw;
             en_send <= 1;
-        end else if (keyboard_ready) begin
+        end else if (delay1_keyboard_ready) begin
             if (keyboard_ascii != 0) begin
                 send_data <= { lang, keyboard_ascii[6:0]};
                 en_send <= 1;
