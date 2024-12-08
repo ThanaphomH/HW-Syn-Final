@@ -61,14 +61,15 @@ module sender (
     wire sp_pushup;
     singlePulser puls(sp_pushup,push_up,clk);
     wire [7:0] keyboard_ascii;
-    wire lang,shift;
+    wire shift,is_thai;
     scancode_to_ascii stc(
         .clk(clk),
         .scancode(keyboard_scancode),
         .push_up(ignore_next),
         .push_down(keyboard_ready),
         .ascii(keyboard_ascii),
-        .led(led[11:8])
+        .led(led[11:8]),
+        .is_thai(is_thai)
     );
     
     reg [7:0] input_switchs;
@@ -80,17 +81,24 @@ module sender (
     assign num1 = send_data[7:4];
     assign num0 = send_data[3:0];
     
+    reg should_send_data, should_send_lang;
+    reg data[7:0];
     wire sp_btnU;
     singlePulser pulser( .d(sp_btnU),.pushed(btnU),.clk(clk));
     always @(posedge clk) begin
+        if (should_send_lang) begin
+            send_data <= {7b'0000000, is_thai}
+            en_send <= 0;
+        end
+
         if (en_send) begin 
             en_send <= 0;
         end else if (sp_btnU) begin
-            send_data <= sw;
-            en_send <= 1;
+            data <= sw;
+            should_send_data <= 1;
         end else if (delay2_keyboard_ready) begin
-            send_data <= keyboard_ascii;
-            en_send <= 1;
+            data <= keyboard_ascii;
+            should_send_data <= 1;
         end
     end
 
