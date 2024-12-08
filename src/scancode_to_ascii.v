@@ -21,8 +21,7 @@ module scancode_to_ascii(
     assign shifting = (holding_shift && !caplock) || (!holding_shift && caplock);
     
     always @(posedge clk) begin
-        led = {push_up , push_down , shifting, change_lang};
-        
+        led = {push_up, push_down, shifting, change_lang};
         if (push_down && scancode == 8'h58) begin // press caplock
             caplock <= ~caplock;
         end else if (push_down && (scancode == 8'h12 || scancode == 8'h59)) begin // hold shift left/right

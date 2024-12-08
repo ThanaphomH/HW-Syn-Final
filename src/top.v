@@ -20,16 +20,6 @@ module top(
     assign an = {an3, an2, an1, an0};
     
     // Divide clock
-//    wire targetClk;
-//    wire [18:0] tclk;
-
-//    assign tclk[0] = clk;
-//    genvar c;
-//    generate for(c = 0; c < 18; c = c + 1) begin
-//        clockDiv fDiv(tclk[c+1], tclk[c]);
-//    end endgenerate
-    
-//    clockDiv fdivTarget(targetClk, tclk[18]);
     reg [17:0] clk_counter = 0;
     reg target_enable = 0;
     
