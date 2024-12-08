@@ -5,7 +5,7 @@ module scancode_to_ascii(
     input [7:0] scancode,
     input push_up,
     input push_down,
-    output [7:0] ascii,
+    output wire [7:0] ascii,
     output reg [3:0] led,
     output reg change_lang
 );
