@@ -90,8 +90,10 @@ module sender (
             send_data <= sw;
             en_send <= 1;
         end else if (delay2_keyboard_ready) begin
-            send_data <= { lang, keyboard_ascii[6:0]};
-            en_send <= 1;
+            if (keyboard_ascii != 0) begin
+                send_data <= { lang, keyboard_ascii[6:0]};
+                en_send <= 1;
+            end
         end
     end
 
