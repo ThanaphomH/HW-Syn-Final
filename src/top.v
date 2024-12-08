@@ -20,6 +20,7 @@ module top(
     output [11:0] led 
 );
 
+    reg dummy_tx;
     wire [7:0] receive_data;
     receiver rec (
         .clk(clk),          // 100MHz on Basys 3
@@ -29,16 +30,17 @@ module top(
         .vsync(vsync),       // to VGA connector
         .rgb(rgb),   // to DAC, to VGA connector
         .RsRx(RsRx), //uart // [7:4] for Higher num hex, [3:0] for Lower num
-        .RsTx(RsTx), //uart
+        .RsTx(dummy_tx), //uart
         .receive_data(receive_data)
     );
     
+    reg dummy_rx;
     wire [7:0] send_data;
     sender send (
         .clk(clk),
         .sw(sw),
         .btnU(btnU),
-        .RsRx(RsRx), //uart // [7:4] for Higher num hex, [3:0] for Lower num
+        .RsRx(dummy_rx), //uart // [7:4] for Higher num hex, [3:0] for Lower num
         .RsTx(RsTx), //uart
         .PS2Clk(PS2Clk), // PS2
         .PS2Data(PS2Data), // PS2
