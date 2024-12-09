@@ -56,7 +56,7 @@ module receiver(
     always @(posedge clk) begin
         if (delay_we) begin
             // Newline: Shift y and move to the first column of next line
-            if (O == 8'h7E) begin
+            if (O[6:0] == 8'h7E) begin
                 wx = 5'b11000;
                 if (wy == 2'b11) begin 
                     wy = 0;
