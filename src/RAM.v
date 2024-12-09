@@ -25,7 +25,7 @@ module DualPortRAM #(
                     mem[i][j] <= {DATA_WIDTH{1'b0}}; 
                 end
             end
-        end else if (we && din != 8'b00001101 && din != 8'b00001010) begin
+        end else if (we && din != 8'h7E) begin
             mem[w_row][w_col] <= din;   // Write data to specified address
         end
     end

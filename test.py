@@ -10,9 +10,9 @@ ascii_mapping.update({chr(c): c for c in range(ord('A'), ord('Z') + 1)})
 ascii_mapping.update({chr(c): c for c in range(ord('0'), ord('9') + 1)})
 
 # Add Enter and Space
-ascii_mapping['Enter'] = 13  # ASCII for Enter is 13
-ascii_mapping['Space'] = 32  # ASCII for Space is 32
-ascii_mapping['-'] = 45
+ascii_mapping['Enter'] = 0x7E  # ASCII for Enter is 13
+ascii_mapping['Space'] = 0x7D  # ASCII for Space is 32
+ascii_mapping['-'] = 0xFF
 
 # Add Thai characters (U+0E00 to U+0E7F in Unicode)
 thai_start = 0x0E00

@@ -33,15 +33,32 @@ module sender (
     reg [7:0] keyboard_scancode;
     reg keyboard_ready = 0; 
     reg ignore_next = 0;
+    reg is_pushup = 0;
     
     always @(posedge clk) begin
         if (keyboard_ready) keyboard_ready <= 0;
+        if (is_pushup) is_pushup <= 0;
+        
+        if (flag) begin
+            if (keycode == 8'hF0) begin // If receive 0xF0 then mark\
+                ignore_next <= 1;
+            end else if(ignore_next) begin // Ignore next data when push-up detected (0xF0)
+                keyboard_scancode <= keycode;
+                is_pushup <= 1;
+                ignore_next <= 0;
+            end else begin
+                keyboard_scancode <= keycode;
+                led[7:0] <= keyboard_scancode;
+                keyboard_ready <= 1;
+            end
+        end
     
         if (flag && keycode == 8'hF0) begin // If receive 0xF0 then mark
             ignore_next <= 1;
         end
         else if (ignore_next && flag) begin // Ignore next data when push-up detected (0xF0)
             keyboard_scancode <= keycode;
+            is_pushup <= 1;
             ignore_next <= 0;
         end else if (flag) begin
             keyboard_scancode <= keycode;
@@ -53,8 +70,8 @@ module sender (
     // Scancode to ascii
     wire delay1_keyboard_ready;
     delay_one_cycle delay(clk, keyboard_ready, delay1_keyboard_ready);
-//    wire delay2_keyboard_ready;
-//    delay_one_cycle delay2(clk, delay1_keyboard_ready, delay2_keyboard_ready);
+    wire delay2_keyboard_ready;
+    delay_one_cycle delay2(clk, delay1_keyboard_ready, delay2_keyboard_ready);
     wire sp_pushup;
     singlePulser puls(sp_pushup,push_up,clk);
     wire [7:0] keyboard_ascii;
@@ -62,7 +79,7 @@ module sender (
     scancode_to_ascii stc(
         .clk(clk),
         .scancode(keyboard_scancode),
-        .push_up(ignore_next),
+        .push_up(is_pushup),
         .push_down(keyboard_ready),
         .ascii(keyboard_ascii),
         .change_lang(lang)
@@ -76,7 +93,7 @@ module sender (
         end else if (sp_btnU) begin
             send_data <= sw;
             en_send <= 1;
-        end else if (delay1_keyboard_ready) begin
+        end else if (delay2_keyboard_ready) begin
             if (keyboard_ascii != 0) begin
                 send_data <= { lang, keyboard_ascii[6:0]};
                 en_send <= 1;
