@@ -1,49 +1,52 @@
 module rainbow_rom(
-	input clk, 
-	input wire [4:0] addr,
-	output reg [11:0] data
-	);
+        input clk, 
+        input wire [6:0] addr,
+        output reg [11:0] data
+    );
 
-	(* rom_style = "block" *)	// Infer BRAM
+    (* rom_style = "block" *) 
 
-	reg [4:0] addr_reg;
-	
-	always @(posedge clk)
-		addr_reg <= addr;
-		
-	always @*
-		case(addr_reg)
-            5'b00000: data = 12'hF00;
-            5'b00001: data = 12'hE10;
-            5'b00010: data = 12'hE30;
-            5'b00011: data = 12'hD41;
-            5'b00100: data = 12'hD51;
-            5'b00101: data = 12'hC72;
-            5'b00110: data = 12'hC82;
-            5'b00111: data = 12'hB93;
-            5'b01000: data = 12'hBA3;
-            5'b01001: data = 12'hAB4;
-            5'b01010: data = 12'hAC4;
-            5'b01011: data = 12'h9D5;
-            5'b01100: data = 12'h9E5;
-            5'b01101: data = 12'h8E6;
-            5'b01110: data = 12'h8E6;
-            5'b01111: data = 12'h7E7;
-            5'b10000: data = 12'h7E7;
-            5'b10001: data = 12'h6E8;
-            5'b10010: data = 12'h6E8;
-            5'b10011: data = 12'h5E9;
-            5'b10100: data = 12'h5D9;
-            5'b10101: data = 12'h4CA;
-            5'b10110: data = 12'h4BA;
-            5'b10111: data = 12'h3AB;
-            5'b11000: data = 12'h39B;
-            5'b11001: data = 12'h28C;
-            5'b11010: data = 12'h27C;
-            5'b11011: data = 12'h15D;
-            5'b11100: data = 12'h14D;
-            5'b11101: data = 12'h03E;
-            5'b11110: data = 12'h01E;
-            5'b11111: data = 12'h00F;
+    reg [6:0] addr_reg;
+    
+    always @(posedge clk)
+        addr_reg <= addr;
+        
+    always @(posedge clk)
+        case(addr_reg)
+        7'b0011000: data = 12'hF00;
+        7'b0011001: data = 12'hE10;
+        7'b0011010: data = 12'hE30;
+        7'b0011011: data = 12'hD41;
+        7'b0011100: data = 12'hD51;
+        7'b0011101: data = 12'hC72;
+        7'b0011110: data = 12'hC82;
+        7'b0011111: data = 12'hB93;
+        7'b0100000: data = 12'hBA3;
+        7'b0100001: data = 12'hAB4;
+        7'b0100010: data = 12'hAC4;
+        7'b0100011: data = 12'h9D5;
+        7'b0100100: data = 12'h9E5;
+        7'b0100101: data = 12'h8E6;
+        7'b0100110: data = 12'h8E6;
+        7'b0100111: data = 12'h7E7;
+        7'b0101000: data = 12'h7E7;
+        7'b0101001: data = 12'h6E8;
+        7'b0101010: data = 12'h6E8;
+        7'b0101011: data = 12'h5E9;
+        7'b0101100: data = 12'h5D9;
+        7'b0101101: data = 12'h4CA;
+        7'b0101110: data = 12'h4BA;
+        7'b0101111: data = 12'h3AB;
+        7'b0110000: data = 12'h39B;
+        7'b0110001: data = 12'h28C;
+        7'b0110010: data = 12'h27C;
+        7'b0110011: data = 12'h15D;
+        7'b0110100: data = 12'h14D;
+        7'b0110101: data = 12'h03E;
+        7'b0110110: data = 12'h01E;
+        7'b0110111: data = 12'h00F;
+
+
+        default: data = 12'h00F; // Default to zero
         endcase
-endmodule
+ endmodule

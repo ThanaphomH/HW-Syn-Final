@@ -1,59 +1,44 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 10/31/2021 09:59:35 PM
-// Design Name: 
-// Module Name: uart
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
+module uart #(
+    parameter CLK_FREQ = 100000000,
+    parameter BAUD_RATE = 9600
+)(
+    input  wire        clk,
+    input  wire        rst,
+    // Transmit interface
+    input  wire [7:0]  tx_data,
+    input  wire        tx_start,
+    output wire        tx_busy,
+    output wire        tx_serial_out,
+    // Receive interface
+    input  wire        rx_serial_in,
+    output wire [7:0]  rx_data,
+    output wire        rx_ready
+);
 
-module uart(
-    input clk,
-    input RsRx,
-    output RsTx,
-    output reg [7:0]  data_2 ,
-    output reg we
+    // Calculate divisor for baud rate from clock frequency
+    localparam integer DIVISOR = CLK_FREQ / BAUD_RATE;
+
+    // Instantiate transmitter
+    uart_tx #(
+        .DIVISOR(DIVISOR)
+    ) tx_inst (
+        .clk(clk),
+        .rst(rst),
+        .tx_data(tx_data),
+        .tx_start(tx_start),
+        .tx_busy(tx_busy),
+        .tx_serial_out(tx_serial_out)
     );
-    
-    reg en, last_rec;
-    reg [7:0] data_in;
-    wire [7:0] data_out;
-    wire sent, received, baud;
-    
-    baudrate_gen baudrate_gen(clk, baud);
-    uart_rx receiver(baud, RsRx, received, data_out);
-    uart_tx transmitter(baud, data_in, en, sent, RsTx);
-    
-    always @(posedge baud) begin
-        if (en) 
-            en = 0;
-    
-        if (~last_rec & received) begin
-            data_in = data_out;
-            data_2 = data_out;
-            we = 1;
-            
-            if (data_in <= 8'h7A && data_in >= 8'h21) begin
-                en = 1;
-            end 
-        end else begin
-            we = 0;
-        end
-    
-        last_rec = received;
-    end
 
-    
+    // Instantiate receiver
+    uart_rx #(
+        .DIVISOR(DIVISOR)
+    ) rx_inst (
+        .clk(clk),
+        .rst(rst),
+        .rx_serial_in(rx_serial_in),
+        .rx_data(rx_data),
+        .rx_ready(rx_ready)
+    );
+
 endmodule

@@ -1,63 +1,75 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 10/31/2021 10:15:58 PM
-// Design Name: 
-// Module Name: uart_tx
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
+module uart_tx #(
+    parameter integer DIVISOR = 10417 // For 50MHz and 115200 baud approx
+)(
+    input  wire       clk,
+    input  wire       rst,
+    input  wire [7:0] tx_data,
+    input  wire       tx_start,
+    output reg        tx_busy,
+    output reg        tx_serial_out
+);
+    localparam IDLE = 0, START = 1, DATA = 2, STOP = 3;
 
-module uart_tx(
-    input clk,
-    input [7:0] data_transmit,
-    input ena,
-    output reg sent,
-    output reg bit_out
-  
-    );
-    
-    reg last_ena;
-    reg sending = 0;
-    reg [7:0] count;
-    reg [7:0] temp;
-    
-    always@(posedge clk) begin
-        if (~sending & ~last_ena & ena) begin
-            temp <= data_transmit;
-            sending <= 1;
-            sent <= 0;
-            count <= 0;
+    reg [1:0]  state = IDLE;
+    reg [7:0]  data_reg;
+    reg [2:0]  bit_index;
+    reg [15:0] baud_cnt;
+
+    always @(posedge clk or posedge rst) begin
+        if(rst) begin
+            state         <= IDLE;
+            tx_serial_out <= 1'b1;
+            tx_busy       <= 1'b0;
+            baud_cnt      <= 0;
+            bit_index     <= 0;
+        end else begin
+            case(state)
+                IDLE: begin
+                    tx_serial_out <= 1'b1; // line idle high
+                    if(tx_start) begin
+                        data_reg <= tx_data;
+                        tx_busy  <= 1'b1;
+                        state    <= START;
+                        baud_cnt <= 0;
+                    end
+                end
+
+                START: begin
+                    if(baud_cnt < (DIVISOR - 1))
+                        baud_cnt <= baud_cnt + 1;
+                    else begin
+                        baud_cnt      <= 0;
+                        tx_serial_out <= 1'b0; // start bit
+                        state         <= DATA;
+                        bit_index     <= 0;
+                    end
+                end
+
+                DATA: begin
+                    if(baud_cnt < (DIVISOR - 1)) begin
+                        baud_cnt <= baud_cnt + 1;
+                    end else begin
+                        baud_cnt      <= 0;
+                        tx_serial_out <= data_reg[bit_index];
+                        bit_index     <= bit_index + 1;
+                        if(bit_index == 7)
+                            state <= STOP;
+                    end
+                end
+
+                STOP: begin
+                    if(baud_cnt < (DIVISOR - 1))
+                        baud_cnt <= baud_cnt + 1;
+                    else begin
+                        baud_cnt      <= 0;
+                        tx_serial_out <= 1'b1; // stop bit
+                        tx_busy       <= 1'b0;
+                        state         <= IDLE;
+                    end
+                end
+
+            endcase
         end
-        
-        last_ena <= ena;
-        
-        if (sending)    count <= count + 1;
-        else            begin count <= 0; bit_out <= 1; end
-        
-        // sampling every 16 ticks
-        case (count)
-            8'd8: bit_out <= 0;
-            8'd24: bit_out <= temp[0];  
-            8'd40: bit_out <= temp[1];
-            8'd56: bit_out <= temp[2];
-            8'd72: bit_out <= temp[3];
-            8'd88: bit_out <= temp[4];
-            8'd104: bit_out <= temp[5];
-            8'd120: bit_out <= temp[6];
-            8'd136: bit_out <= temp[7];
-            8'd152: begin sent <= 1; sending <= 0; end
-        endcase
     end
+
 endmodule
