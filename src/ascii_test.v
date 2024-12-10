@@ -52,16 +52,15 @@ module ascii_test(
             rgb = 12'h000;      // blank
         else
             if(ascii_bit_on)             // set letters color
-//                if (column_index < 28) rgb = 12'hF00;    // start from col 24
-//                else if (column_index < 32) rgb = 12'h881;
-//                else if (column_index < 36) rgb = 12'h8F1;
-//                else if (column_index < 40) rgb = 12'h0F0;
-//                else if (column_index < 44) rgb = 12'h00F;
-//                else if (column_index < 48) rgb = 12'h408;
-//                else if (column_index < 52) rgb = 12'hF0F;
-//                else if (column_index < 57) rgb = 12'hF08;
-//                else 
-                rgb = 12'h000;
+                if (column_index < 28) rgb = 12'hF00;    // start from col 24
+                else if (column_index < 32) rgb = 12'h881;
+                else if (column_index < 36) rgb = 12'h8F1;
+                else if (column_index < 40) rgb = 12'h0F0;
+                else if (column_index < 44) rgb = 12'h00F;
+                else if (column_index < 48) rgb = 12'h408;
+                else if (column_index < 52) rgb = 12'hF0F;
+                else if (column_index < 56) rgb = 12'hF08;
+                else rgb = 12'h000;
             else
                 // Frame
                 if ((x >= 184 && x < 456 && y >= 200 && y < 280))
@@ -69,15 +68,15 @@ module ascii_test(
                     else rgb = 12'h000;
                 else 
                     // Thai flag top
-                    if (y <= 24) 
+                    if (y <= 4) 
                         rgb = 12'hF00; // Red
-                    else if (y <= 28) 
+                    else if (y <= 8) 
                         rgb = 12'hFFF; // White
-                    else if (y <= 32) 
+                    else if (y <= 12) 
                         rgb = 12'h00F; // Blue
-                    else if (y <= 36) 
+                    else if (y <= 16) 
                         rgb = 12'hFFF; // White
-                    else if (y <= 40) 
+                    else if (y <= 20) 
                         rgb = 12'hF00; // Red
                 
                     // Thai flag bottom
